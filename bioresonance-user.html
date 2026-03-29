@@ -7,7 +7,2093 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>ヒーリングサウンド セラピー</title>
 <style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;margin<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>細胞共鳴 療法システム</title>
+<style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;margin:0;padding:0;}
+body{background:#050018;color:#fff;font-family:-apple-system,'Helvetica Neue',sans-serif;min-height:100vh;}
+input,button,select{font-family:inherit;}
+button{cursor:pointer;transition:all 0.2s;}
+
+/* ── ナビ ── */
+.nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:#0a0a18;border-top:1px solid #1a1a2e;z-index:100;}
+.nav-btn{flex:1;padding:10px 4px 14px;display:flex;flex-direction:column;align-items:center;gap:3px;background:transparent;border:none;color:#4a6080;font-size:10px;}
+.nav-btn.active{color:#4dffb4;}
+.nav-btn .nav-icon{font-size:22px;}
+
+/* ── ページ ── */
+.page{display:none;min-height:100vh;padding:20px 16px 90px;flex-direction:column;align-items:center;}
+.page.active{display:flex;}
+
+/* ── 共通 ── */
+.maxw{width:100%;max-width:480px;}
+.card{padding:16px;border-radius:18px;margin-bottom:14px;}
+.btn-primary{width:100%;padding:18px;font-size:18px;font-weight:900;border-radius:20px;border:none;letter-spacing:3px;}
+.btn-small{padding:7px 14px;border-radius:10px;font-size:13px;border:1.5px solid #333;background:#111;color:#888;}
+.btn-small.active-btn{background:rgba(77,255,180,0.2);border-color:#4dffb4;color:#4dffb4;}
+.section-title{font-size:18px;font-weight:800;margin-bottom:12px;padding:10px 14px;border-radius:12px;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.scene-card{padding:14px 12px;border-radius:16px;cursor:pointer;text-align:left;border:2px solid;transition:all 0.2s;}
+.scene-icon{font-size:26px;margin-bottom:6px;}
+.scene-name{font-size:15px;font-weight:800;margin-bottom:2px;}
+.scene-sub{font-size:11px;opacity:0.6;}
+.countdown{font-size:48px;font-weight:900;text-align:center;font-variant-numeric:tabular-nums;min-height:58px;}
+.prog-bar{height:8px;background:#1a1a2e;border-radius:4px;overflow:hidden;margin:6px 0;}
+.prog-fill{height:100%;border-radius:4px;transition:width 1s linear;}
+input[type=range]{width:100%;accent-color:#4dffb4;height:6px;}
+.input-box{width:100%;padding:14px 16px;border-radius:14px;background:#1a1a2a;border:2px solid #4dffb455;color:#fff;font-size:16px;outline:none;}
+.tag{display:inline-flex;align-items:center;gap:3px;padding:4px 10px 4px 12px;border-radius:20px;background:#1a1a2a;font-size:12px;cursor:pointer;margin:3px;}
+.hz-chip{font-size:11px;padding:2px 8px;border-radius:8px;background:#1a2a3a;color:#aaddff;margin:2px;}
+.repeat-toggle{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;background:#0d0d1a;border:1px solid #1a1a2e;margin-bottom:12px;cursor:pointer;}
+.toggle-pill{width:44px;height:24px;border-radius:12px;background:#333;position:relative;transition:all 0.3s;}
+.toggle-pill.on{background:#4dffb4;}
+.toggle-dot{position:absolute;width:20px;height:20px;border-radius:50%;background:#fff;top:2px;left:2px;transition:all 0.3s;}
+.toggle-pill.on .toggle-dot{left:22px;}
+.admin-badge{font-size:11px;padding:3px 10px;border-radius:8px;background:#330000;border:1px solid #ff336633;color:#ff3366;}
+</style>
+</head>
+<body>
+
+<!-- ナビゲーション -->
+<nav class="nav">
+  <button class="nav-btn active" onclick="showPage('home')"><span class="nav-icon">🏠</span>ホーム</button>
+  <button class="nav-btn" onclick="showPage('meditation')"><span class="nav-icon">🌀</span>瞑想</button>
+  <button class="nav-btn" onclick="showPage('chakra')"><span class="nav-icon">🧘</span>チャクラ</button>
+  <button class="nav-btn" onclick="showPage('symptom')"><span class="nav-icon">🩺</span>症状</button>
+  <button class="nav-btn" onclick="showPage('database')"><span class="nav-icon">📋</span>周波数DB</button>
+  <button class="nav-btn" onclick="showPage('gamma')"><span class="nav-icon">🧬</span>ガンマ</button>
+  <button class="nav-btn" onclick="showPage('shigo')"><span class="nav-icon">🕐</span>子午流注</button>
+  <button class="nav-btn" onclick="showPage('shindan')"><span class="nav-icon">🏥</span>診断</button>
+</nav>
+
+<!-- ════════════════════════════════════════ -->
+<!-- ガンマ波セラピー                        -->
+<!-- ════════════════════════════════════════ -->
+<div class="page" id="page-gamma">
+  <div class="maxw">
+    <!-- タイトル -->
+    <div style="text-align:center;margin-bottom:20px;">
+      <div style="font-size:11px;letter-spacing:4px;color:#00d4ff;opacity:0.7;margin-bottom:4px;">GAMMA · BIORESONANCE · 40Hz</div>
+      <div style="font-size:24px;font-weight:900;background:linear-gradient(90deg,#00d4ff,#4dffb4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">🧬 40Hz ガンマ波セラピー</div>
+      <div style="font-size:13px;color:#aaa;margin-top:6px;line-height:1.8;">神経炎症抑制 × 純正律 × 脳同調</div>
+    </div>
+
+    <!-- 科学的根拠カード -->
+    <div style="padding:14px 16px;border-radius:16px;background:#001a2a;border:1px solid #00d4ff33;margin-bottom:14px;">
+      <div style="font-size:12px;font-weight:800;color:#00d4ff;margin-bottom:6px;">🔬 科学的根拠</div>
+      <div style="font-size:12px;color:#ccc;line-height:1.8;">MIT研究：40Hzガンマ波が神経炎症を抑制し、ミクログリアを活性化することが確認されています。<br><span style="font-size:10px;color:#888;">（Journal of Internal Medicine, 2024）</span></div>
+    </div>
+
+    <!-- 注意書き -->
+    <div style="padding:10px 14px;border-radius:12px;background:#1a1000;border:1px solid #ffaa0033;margin-bottom:18px;">
+      <div style="font-size:12px;color:#ffaa44;line-height:1.7;">⚠️ バイノーラルビートはステレオヘッドフォン必須<br><span style="font-size:11px;color:#888;">本音源は医療行為ではありません</span></div>
+    </div>
+
+    <!-- レイヤー ON/OFF -->
+    <div style="font-size:14px;font-weight:800;color:#00d4ff;margin-bottom:10px;">🎚️ レイヤー設定</div>
+    <div id="gammaLayers" style="margin-bottom:18px;"></div>
+
+    <!-- プレイヤー -->
+    <div id="gammaControls"></div>
+  </div>
+</div>
+
+<!-- 子午流注ページ -->
+<!-- 子午流注ページ -->
+<div class="page" id="page-shigo">
+  <div class="maxw">
+    <div style="text-align:center;margin-bottom:20px;">
+      <div style="font-size:11px;letter-spacing:4px;color:#ffaa44;opacity:0.8;margin-bottom:4px;">SHIGO RUCHU · 子午流注</div>
+      <div style="font-size:24px;font-weight:900;background:linear-gradient(90deg,#ffaa44,#ff4466,#c44dff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">🕐 体内時計セラピー</div>
+      <div style="font-size:12px;color:#aaa;margin-top:6px;line-height:1.8;">24時間 × 12経絡 × 養生アドバイス<br>今の時間帯に最適なセラピーを自動提案</div>
+    </div>
+    <!-- 現在時刻カード -->
+    <div id="shigoNowCard" style="padding:20px;border-radius:20px;margin-bottom:16px;text-align:center;"></div>
+    <!-- 今おすすめプログラム -->
+    <div id="shigoRecommend" style="margin-bottom:16px;"></div>
+    <!-- プレイヤー -->
+    <div id="shigoPlayer" style="margin-bottom:16px;"></div>
+    <!-- 24時間スケジュール -->
+    <div style="font-size:14px;font-weight:800;color:#ffaa44;margin-bottom:10px;">📅 24時間 経絡スケジュール</div>
+    <div id="shigoSchedule"></div>
+  </div>
+</div>
+
+<!-- 中医学診断ページ -->
+<div class="page" id="page-shindan">
+  <div class="maxw">
+    <div id="shindan-content"></div>
+  </div>
+</div>
+
+<div class="page active" id="page-home">
+  <div class="maxw">
+    <div style="text-align:center;margin-bottom:28px;">
+      <div style="font-size:11px;letter-spacing:4px;color:#888;margin-bottom:6px;">PEMF · BIORESONANCE THERAPY</div>
+      <div style="font-size:26px;font-weight:900;background:linear-gradient(90deg,#4dffb4,#ffe066,#ff88ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">細胞共鳴 療法システム</div>
+      <div style="font-size:13px;color:#aaa;margin-top:8px;line-height:1.8;">シューマン共振 × シトクロムC × チャクラ<br>ライフ周波数 × 経絡 × 純正律</div>
+      <div style="margin-top:12px;">
+        <button onclick="toggleAdmin()" id="adminBtn" style="padding:8px 16px;border-radius:10px;background:#111;border:1px solid #333;color:#888;font-size:12px;">🔐 管理者</button>
+      </div>
+      <div id="adminBadge" style="display:none;margin-top:8px;"><span class="admin-badge">🔓 管理者モード ON</span></div>
+    </div>
+
+    <!-- カテゴリ一覧 -->
+    <div class="card" style="background:linear-gradient(135deg,#001a1077,#00100a99);border:1px solid #4dffb444;margin-bottom:12px;cursor:pointer;" onclick="showPage('meditation')">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span style="font-size:32px;">🌍⚡</span>
+        <div>
+          <div style="font-size:18px;font-weight:800;color:#4dffb4;">シューマン × シトクロムC</div>
+          <div style="font-size:12px;color:#4a8a6a;">7.83Hz × 8.02Hz · 純正律 · 4シーン</div>
+        </div>
+        <span style="margin-left:auto;font-size:22px;color:#4dffb4;">›</span>
+      </div>
+    </div>
+
+    <div class="card" style="background:linear-gradient(135deg,#1a000066,#10001a99);border:1px solid #ff88ff44;margin-bottom:12px;cursor:pointer;" onclick="showPage('chakra')">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span style="font-size:32px;">🧘</span>
+        <div>
+          <div style="font-size:18px;font-weight:800;color:#ff88ff;">チャクラ PEMF</div>
+          <div style="font-size:12px;color:#884488;">ソルフェジオ × 地球・太陽 · 6シーン</div>
+        </div>
+        <span style="margin-left:auto;font-size:22px;color:#ff88ff;">›</span>
+      </div>
+    </div>
+
+    <div class="card" style="background:linear-gradient(135deg,#00001a77,#0a000099);border:1px solid #ff88aa44;margin-bottom:12px;cursor:pointer;" onclick="showPage('symptom')">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span style="font-size:32px;">🩺</span>
+        <div>
+          <div style="font-size:18px;font-weight:800;color:#ff88aa;">症状別セラピー</div>
+          <div style="font-size:12px;color:#884455;">ライフ周波数 × 経絡 × 純正律</div>
+        </div>
+        <span style="margin-left:auto;font-size:22px;color:#ff88aa;">›</span>
+      </div>
+    </div>
+
+    <div class="card" style="background:linear-gradient(135deg,#0a001a77,#05000f99);border:1px solid #c44dff44;margin-bottom:12px;cursor:pointer;" onclick="showPage('database')">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span style="font-size:32px;">📋</span>
+        <div>
+          <div style="font-size:18px;font-weight:800;color:#c44dff;">周波数マスターDB</div>
+          <div style="font-size:12px;color:#664488;">135件収録 · 検索 · 複数選択再生</div>
+        </div>
+        <span style="margin-left:auto;font-size:22px;color:#c44dff;">›</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ -->
+<!-- 瞑想プレイヤー                          -->
+<!-- ════════════════════════════════════════ -->
+<div class="page" id="page-meditation">
+  <div class="maxw">
+    <div style="font-size:11px;letter-spacing:3px;color:#4dffb4;opacity:0.7;text-align:center;margin-bottom:4px;">SCHUMANN × CYTOCHROME-C</div>
+    <div style="font-size:22px;font-weight:900;text-align:center;background:linear-gradient(90deg,#4dffb4,#ffe066);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:16px;">シューマン × シトクロムC</div>
+
+    <div class="grid2" style="margin-bottom:20px;" id="sceneGrid"></div>
+
+    <!-- ビジュアル -->
+    <div style="position:relative;width:200px;height:200px;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;">
+      <div id="ring1" style="position:absolute;width:190px;height:190px;border-radius:50%;border:1.5px solid #4dffb422;transition:all 0.1s;"></div>
+      <div id="ring2" style="position:absolute;width:155px;height:155px;border-radius:50%;border:1.5px solid #4dffb422;transition:all 0.1s;"></div>
+      <div id="ring3" style="position:absolute;width:118px;height:118px;border-radius:50%;border:1.5px solid #ffe06622;transition:all 0.1s;"></div>
+      <div id="ring4" style="position:absolute;width:82px;height:82px;border-radius:50%;border:1.5px solid #ffe06622;transition:all 0.1s;"></div>
+      <div id="centerOrb" style="width:72px;height:72px;border-radius:50%;border:2px solid #4dffb422;display:flex;align-items:center;justify-content:center;font-size:28px;transition:all 0.2s;">🌀</div>
+    </div>
+
+    <div id="meditationControls"></div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ -->
+<!-- チャクラ                                -->
+<!-- ════════════════════════════════════════ -->
+<div class="page" id="page-chakra">
+  <div class="maxw">
+    <div style="font-size:22px;font-weight:900;text-align:center;background:linear-gradient(90deg,#ff88ff,#ffaa44);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:16px;">チャクラ・Earth/Sun PEMF</div>
+    <div id="chakraGrid" style="margin-bottom:16px;"></div>
+    <div id="chakraControls"></div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ -->
+<!-- 症状別セラピー                          -->
+<!-- ════════════════════════════════════════ -->
+<div class="page" id="page-symptom">
+  <div class="maxw">
+    <div style="font-size:22px;font-weight:900;text-align:center;color:#ff88aa;margin-bottom:16px;">🩺 症状別セラピー</div>
+
+    <!-- 検索 -->
+    <div style="margin-bottom:16px;">
+      <div style="font-size:14px;color:#ff88aa;font-weight:700;margin-bottom:8px;">🔍 症状を直接入力</div>
+      <input class="input-box" id="symptomSearch" placeholder="腰痛、むくみ、眠れない、疲れ…" oninput="searchSymptoms()">
+      <div id="searchResults" style="margin-top:10px;"></div>
+    </div>
+
+    <!-- カテゴリ -->
+    <div style="font-size:14px;color:#ff88aa;font-weight:700;margin-bottom:10px;">📂 カテゴリから選ぶ</div>
+    <div class="grid2" id="symptomCatGrid"></div>
+    <div id="symptomList" style="margin-top:14px;"></div>
+    <div id="symptomPlayer" style="margin-top:14px;"></div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ -->
+<!-- 周波数DB                               -->
+<!-- ════════════════════════════════════════ -->
+<div class="page" id="page-database">
+  <div class="maxw">
+    <div style="font-size:22px;font-weight:900;text-align:center;background:linear-gradient(90deg,#ff6b35,#4dffb4,#c44dff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px;">周波数マスターDB</div>
+    <div style="font-size:12px;color:#666;text-align:center;margin-bottom:14px;">135件収録</div>
+
+    <div style="display:flex;gap:4px;background:#0d0d1a;border-radius:12px;padding:4px;margin-bottom:14px;">
+      <button class="nav-btn active" id="dbTab1" onclick="switchDbTab('search')" style="flex:1;padding:8px;border-radius:9px;font-size:13px;background:#1a2a4a;border:1px solid #00d4ff33;color:#00d4ff;font-weight:700;">🔍 検索</button>
+      <button class="nav-btn" id="dbTab2" onclick="switchDbTab('list')" style="flex:1;padding:8px;border-radius:9px;font-size:13px;background:transparent;border:1px solid transparent;color:#4a6080;">📋 一覧</button>
+    </div>
+
+    <div id="dbSearchPane">
+      <input class="input-box" id="dbSearch" placeholder="症状・キーワード（腰痛、肝臓、ストレス…）" oninput="doDbSearch()" style="margin-bottom:10px;">
+      <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px;" id="dbTypeFilters"></div>
+      <div style="font-size:12px;color:#666;margin-bottom:8px;" id="dbResultCount"></div>
+      <div id="dbResults" style="max-height:380px;overflow-y:auto;-webkit-overflow-scrolling:touch;"></div>
+    </div>
+
+    <div id="dbListPane" style="display:none;">
+      <div id="dbFullList"></div>
+    </div>
+
+    <div id="dbSelectedPanel" style="margin-top:14px;"></div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// データ定義
+// ============================================================
+const S_BASE=125.28, C_BASE=128.32;
+const JR=[1,9/8,5/4,4/3,3/2,5/3,15/8,2];
+const ADMIN_PW="admin1234";
+let isAdmin=false;
+
+// シューマン×シトクロムCシーン
+const SC_SCENES=[
+  {id:"sync",  name:"深層同調",     sub:"完全統合",       icon:"🌀",color:"#4dffb4",bg:"#001a10",sIdx:[0,2,4,6],cIdx:[0,1,4,5]},
+  {id:"energy",name:"細胞エネルギー",sub:"ATP産生",         icon:"⚡",color:"#ffe066",bg:"#1a1000",sIdx:[0,4,7],  cIdx:[0,2,4,7]},
+  {id:"calm",  name:"深海の静寂",   sub:"深いリラックス",   icon:"🌊",color:"#00d4ff",bg:"#000e1a",sIdx:[0,2,4,5,7],cIdx:[0,3,4]},
+  {id:"cosmos",name:"宇宙共鳴",     sub:"全倍音スペクトル", icon:"🌌",color:"#c44dff",bg:"#0d0018",sIdx:[0,1,2,3,4,5,6,7],cIdx:[0,1,2,3,4,5,6,7]},
+];
+
+// チャクラ・Earth/Sunシーン
+const CHAKRA_SCENES=[
+  {id:"root",    name:"ルートチャクラ", sub:"396Hz 安定・グラウンディング",icon:"🔴",color:"#ff4444",freqs:[396,495,594,792],     iso:7.83},
+  {id:"sacral",  name:"仙骨チャクラ",  sub:"417Hz 創造性・感情",          icon:"🟠",color:"#ff8800",freqs:[417,521.25,625.5,834], iso:7.83},
+  {id:"solar",   name:"太陽神経叢",    sub:"528Hz DNA修復・変容",         icon:"🟡",color:"#ffdd00",freqs:[528,660,792,1056],      iso:8.02},
+  {id:"heart",   name:"ハートチャクラ",sub:"639Hz 愛・つながり",           icon:"💚",color:"#44ff88",freqs:[639,798.75,958.5,1278],iso:7.83},
+  {id:"throat",  name:"喉チャクラ",   sub:"741Hz 表現・真実",             icon:"🔵",color:"#4488ff",freqs:[741,926.25,1111.5,1482],iso:8.02},
+  {id:"earthsun",name:"地球・太陽 PEMF",sub:"地球公転×太陽周波数",        icon:"🌍",color:"#ffaa44",freqs:[136.1,126.22,170.125,189.33],iso:7.83},
+];
+
+// 症状カテゴリ
+const SYM_CATS=[
+  {id:"urinary",  name:"泌尿器・腎臓",    icon:"💧",color:"#00d4ff"},
+  {id:"immune",   name:"免疫・感染症",    icon:"🛡️",color:"#ffd700"},
+  {id:"inflame",  name:"炎症・痛み",      icon:"🔥",color:"#ff6b35"},
+  {id:"digest",   name:"消化器・代謝",    icon:"🌿",color:"#a8ff78"},
+  {id:"neuro",    name:"神経・精神",      icon:"🧠",color:"#78ffd6"},
+  {id:"energy",   name:"疲労・活力",      icon:"⚡",color:"#ffe066"},
+  {id:"vessel",   name:"血管・動脈硬化",  icon:"🫀",color:"#ff4466"},
+  {id:"collagen", name:"膠原病・自己免疫",icon:"🦴",color:"#cc88ff"},
+  {id:"beauty",   name:"皮膚・美容・リフト",icon:"✨",color:"#ffb3d9"},
+  {id:"cancer",   name:"がん・腫瘍サポート",icon:"🎗️",color:"#aaffee"},
+];
+
+// 経絡データ
+const MERIDIANS={
+  lung:    {name:"肺経",   freq:220,  color:"#aaddff"},
+  lintst:  {name:"大腸経", freq:232,  color:"#a8ff78"},
+  stomach: {name:"胃経",   freq:246,  color:"#ffe066"},
+  spleen:  {name:"脾経",   freq:261,  color:"#ffaa44"},
+  heart:   {name:"心経",   freq:276,  color:"#ff4488"},
+  sintst:  {name:"小腸経", freq:292,  color:"#ff6644"},
+  bladder: {name:"膀胱経", freq:310,  color:"#44aaff"},
+  kidney:  {name:"腎経",   freq:328,  color:"#4466ff"},
+  pericard:{name:"心包経", freq:347,  color:"#cc44ff"},
+  triple:  {name:"三焦経", freq:368,  color:"#ff8844"},
+  gallbldr:{name:"胆経",   freq:390,  color:"#44ff88"},
+  liver:   {name:"肝経",   freq:413,  color:"#88ff44"},
+};
+function mFreqs(key){const m=MERIDIANS[key];if(!m)return[];const f=m.freq;return[f,f*5/4,f*3/2,f*2];}
+
+// 症状DB
+const SYMPTOMS=[
+  {id:"bladder", cat:"urinary",name:"膀胱炎",    icon:"💧",desc:"膀胱の炎症・排尿の不快感",  rife:[254,660,728,784],sIdx:[0,2,4],cIdx:[0,4,7],  mk:["bladder","kidney"]},
+  {id:"kidney",  cat:"urinary",name:"腎臓ストレス",icon:"🫘",desc:"腎臓の疲れ・むくみ",       rife:[317,527,787,880],sIdx:[0,3,4],cIdx:[0,2,4],  mk:["kidney","bladder"]},
+  {id:"prostate",cat:"urinary",name:"前立腺炎",  icon:"🔵",desc:"前立腺の炎症・不快感",      rife:[306,522,650,784],sIdx:[0,2,5],cIdx:[0,4,6],  mk:["kidney","triple"]},
+  {id:"period",  cat:"urinary",name:"生理痛・PMS",icon:"🌸",desc:"月経痛・ホルモンバランス",  rife:[880,787,727,523],sIdx:[0,2,4],cIdx:[0,3,4],  mk:["liver","spleen"]},
+  {id:"immune",  cat:"immune", name:"免疫低下",  icon:"🛡️",desc:"免疫力・自然治癒力の強化",  rife:[128,512,727,787],sIdx:[0,1,4,7],cIdx:[0,2,4,7],mk:["spleen","triple","lung"]},
+  {id:"flu",     cat:"immune", name:"インフルエンザ",icon:"🦠",desc:"ウイルス感染・発熱",    rife:[625,776,880,1550],sIdx:[0,2,4,6],cIdx:[0,1,4,5],mk:["lung","spleen"]},
+  {id:"candida", cat:"immune", name:"カンジダ菌",icon:"🍄",desc:"カビ・酵母菌の感染",         rife:[464,942,1453],sIdx:[0,3,5,7],cIdx:[0,2,5,7],  mk:["spleen","lintst"]},
+  {id:"allergy", cat:"immune", name:"アレルギー",icon:"🌼",desc:"花粉・食物アレルギー",        rife:[880,787,727,522],sIdx:[0,2,4],cIdx:[0,4,6],  mk:["lung","spleen"]},
+  {id:"herpes_zoster",cat:"immune",name:"帯状疱疹",icon:"🔥",
+   desc:"帯状疱疹ウイルス（Herpes Zoster）への対応\nCAFL基本: 3343, 2320, 802, 880, 787\n経絡: 肝火・湿熱を鎮める（肝経・胆経・脾経）",
+   rife:[3343,2320,2170,1600,1500,1160,914,880,833,802,787,664,580,3.9,
+         1550,1865,728,2720,2128,5000,464,800,574,304,20],
+   sIdx:[0,2,4,6],cIdx:[0,3,4,7],mk:["liver","gallbldr","spleen"]},
+  {id:"inflame", cat:"inflame",name:"一般炎症",  icon:"🔥",desc:"体内の炎症・熱感",           rife:[9.6,80,880,2720],sIdx:[0,4,7],cIdx:[0,2,4],  mk:["triple","pericard"]},
+  {id:"backpain",cat:"inflame",name:"腰痛・筋肉痛",icon:"🦴",desc:"筋肉の炎症・腰の痛み",   rife:[9.6,80,880,2720],sIdx:[0,2,4,6],cIdx:[0,3,4], mk:["bladder","gallbldr"]},
+  {id:"joint",   cat:"inflame",name:"関節炎・リウマチ",icon:"🦵",desc:"関節の炎症・痛み",    rife:[20,727,787,880], sIdx:[0,2,4,6],cIdx:[0,1,4,5],mk:["liver","gallbldr"]},
+  {id:"headache",cat:"inflame",name:"頭痛・偏頭痛",icon:"😣",desc:"頭痛・片頭痛",            rife:[880,787,727,20], sIdx:[0,2,4],cIdx:[0,3,4],  mk:["liver","gallbldr"]},
+  {id:"gut",     cat:"digest", name:"腸内細菌異常",icon:"🌿",desc:"腸内フローラのバランス",   rife:[240,448,688,776],sIdx:[0,2,4],cIdx:[0,1,4],  mk:["lintst","spleen"]},
+  {id:"stomach", cat:"digest", name:"胃炎・消化不良",icon:"🟡",desc:"胃の不快感・消化力低下", rife:[880,727,465,250],sIdx:[0,2,4],cIdx:[0,3,4],  mk:["stomach","spleen"]},
+  {id:"diabetes",cat:"digest", name:"糖尿病・代謝",icon:"🍬",desc:"血糖バランス・代謝サポート",rife:[727,787,880],sIdx:[0,4,5,7],cIdx:[0,2,4,7],mk:["spleen","stomach"]},
+  {id:"liver",   cat:"digest", name:"肝臓疲労",  icon:"🍺",desc:"肝機能・解毒サポート",        rife:[727,787,880,317],sIdx:[0,2,4],cIdx:[0,3,4],  mk:["liver","gallbldr"]},
+  {id:"stress",  cat:"neuro",  name:"ストレス・不安",icon:"😰",desc:"精神的ストレス・不安感", rife:[40,528,741,852], sIdx:[0,1,2,4],cIdx:[0,3,4,6],mk:["liver","heart"]},
+  {id:"sleep",   cat:"neuro",  name:"不眠・睡眠障害",icon:"😴",desc:"眠りの質・深い睡眠",    rife:[40,528,741],sIdx:[0,2,4,7],cIdx:[0,4,5],      mk:["heart","kidney"]},
+  {id:"autonomic",cat:"neuro", name:"自律神経失調",icon:"⚡",desc:"自律神経・動悸・冷え",      rife:[728,784,880,64], sIdx:[0,2,4],cIdx:[0,3,4],  mk:["heart","pericard"]},
+  {id:"memory",  cat:"neuro",  name:"記憶・集中力",icon:"🧠",desc:"脳機能・集中力サポート",   rife:[40,10000,528],   sIdx:[0,2,4],cIdx:[0,4,7],  mk:["heart","kidney"]},
+  {id:"fatigue", cat:"energy", name:"慢性疲労",  icon:"🔋",desc:"だるさ・慢性的な疲れ",       rife:[428,660,728,800],sIdx:[0,2,4,6],cIdx:[0,1,4,5],mk:["spleen","kidney"]},
+  {id:"lowenergy",cat:"energy",name:"気力低下",  icon:"⚡",desc:"エネルギー・活力の回復",      rife:[128,512,727],sIdx:[0,4,7],cIdx:[0,2,4,7],    mk:["kidney","heart"]},
+  {id:"aging",   cat:"energy", name:"老化・抗酸化",icon:"✨",desc:"アンチエイジング・細胞活性", rife:[880,787,727,20],sIdx:[0,2,4,6],cIdx:[0,1,4,5],mk:["kidney","liver"]},
+
+  // ── 血管・動脈硬化（新規）──
+  {id:"arteriosclerosis",cat:"vessel",name:"動脈硬化",icon:"🫀",
+   desc:"血管壁の硬化・コレステロール蓄積の緩和",
+   rife:[20,727,787,880,5000,10000],sIdx:[0,2,4,6],cIdx:[0,1,4,7],mk:["heart","pericard","liver"]},
+  {id:"angina",cat:"vessel",name:"狭心症・心臓血管",icon:"💔",
+   desc:"心臓への血流・狭心症症状のサポート",
+   rife:[3,230,880,787,776,727,465,444,125,95,72,20],sIdx:[0,2,4,5],cIdx:[0,3,4,6],mk:["heart","pericard"]},
+  {id:"thrombosis",cat:"vessel",name:"血栓・血液凝固",icon:"🩸",
+   desc:"血栓・血液のサラサラサポート",
+   rife:[20,800,880,727,787],sIdx:[0,2,4,7],cIdx:[0,1,4,5],mk:["heart","liver","spleen"]},
+  {id:"stroke",cat:"vessel",name:"脳卒中・脳梗塞",icon:"🧠",
+   desc:"脳血管・脳卒中後のサポート",
+   rife:[40,1800,880,787,727,650,625,600,125,95,72,20],sIdx:[0,2,4,6],cIdx:[0,2,4,7],mk:["liver","gallbldr","heart"]},
+  {id:"hypertension2",cat:"vessel",name:"高血圧（血管）",icon:"📈",
+   desc:"血圧の安定・血管弛緩サポート",
+   rife:[880,787,727,2500,125,20],sIdx:[0,2,4,5],cIdx:[0,3,4,7],mk:["heart","liver","kidney"]},
+  {id:"bloodcirc",cat:"vessel",name:"血液循環改善",icon:"🔄",
+   desc:"全身の血流促進・冷え・むくみ",
+   rife:[880,787,727,2000,125,20],sIdx:[0,1,4,6],cIdx:[0,2,4,5],mk:["heart","spleen","liver"]},
+  {id:"lymphvessel",cat:"vessel",name:"リンパ血管・むくみ",icon:"🌊",
+   desc:"リンパ管炎・リンパうっ滞・老廃物排出",
+   rife:[574,778,1120,1078,3176,522,146,444,880,727],sIdx:[0,2,4,7],cIdx:[0,1,4,5],mk:["spleen","triple","liver"]},
+  {id:"aneurysm",cat:"vessel",name:"動脈瘤",icon:"⚠️",
+   desc:"動脈瘤サポート・血管壁の強化",
+   rife:[20,727,787,880],sIdx:[0,2,4],cIdx:[0,4,7],mk:["heart","pericard"]},
+  {id:"vasculitis",cat:"vessel",name:"血管炎",icon:"🔴",
+   desc:"血管壁の炎症・自己免疫性血管炎",
+   rife:[20,727,787,880,465,2000,2008],sIdx:[0,2,4,6],cIdx:[0,1,4,5],mk:["heart","liver","triple"]},
+
+  // ── 膠原病・自己免疫（新規）──
+  {id:"lupus",cat:"collagen",name:"全身性エリテマトーデス（SLE）",icon:"🦋",
+   desc:"ループス・全身性自己免疫疾患",
+   rife:[633,2125,2008,3612,802,2489,702,243,386,442],sIdx:[0,2,4,6],cIdx:[0,1,4,5],mk:["liver","spleen","triple"]},
+  {id:"lupus2",cat:"collagen",name:"ループス二次症状",icon:"🫧",
+   desc:"SLE二次症状・追加サポート",
+   rife:[2180,2128,2008,1552,880,784,664,304,386,678,481],sIdx:[0,3,5,7],cIdx:[0,2,5,7],mk:["liver","kidney","spleen"]},
+  {id:"rheumatoid",cat:"collagen",name:"関節リウマチ（RA）",icon:"🦴",
+   desc:"関節リウマチ・自己免疫性関節炎",
+   rife:[250,262,600,625,650,727,776,787,880,5000],sIdx:[0,2,4,5],cIdx:[0,3,4,6],mk:["liver","gallbldr","spleen"]},
+  {id:"ankylosing",cat:"collagen",name:"強直性脊椎炎",icon:"🦾",
+   desc:"脊椎の炎症・強直・背骨の痛み",
+   rife:[3000,95,1550,802,880,787,776,727,650,625,600],sIdx:[0,2,4,6],cIdx:[0,1,4,5],mk:["bladder","kidney","gallbldr"]},
+  {id:"scleroderma",cat:"collagen",name:"強皮症",icon:"🧤",
+   desc:"皮膚・結合組織の硬化・線維化",
+   rife:[727,787,880,2720,2170,1800,1600,465,444,20],sIdx:[0,2,4,7],cIdx:[0,3,4,6],mk:["lung","spleen","triple"]},
+  {id:"fibromyalgia",cat:"collagen",name:"線維筋痛症",icon:"😣",
+   desc:"全身の慢性痛・筋肉・結合組織",
+   rife:[880,787,727,128,512,304,466],sIdx:[0,2,4,6],cIdx:[0,1,4,5],mk:["liver","gallbldr","triple"]},
+  {id:"sjogrens",cat:"collagen",name:"シェーグレン症候群",icon:"🫦",
+   desc:"唾液腺・涙腺・乾燥症状",
+   rife:[727,787,880,465,444,20],sIdx:[0,2,4],cIdx:[0,4,6],mk:["liver","lung","stomach"]},
+  {id:"dermatomyositis",cat:"collagen",name:"皮膚筋炎・多発性筋炎",icon:"💪",
+   desc:"筋肉・皮膚の炎症・自己免疫",
+   rife:[727,787,880,2720,465,20],sIdx:[0,2,4,5],cIdx:[0,3,4,7],mk:["spleen","liver","triple"]},
+  {id:"autoimmune",cat:"collagen",name:"自己免疫全般",icon:"🛡️",
+   desc:"自己免疫疾患の全般的サポート",
+   rife:[727,787,880,2008,2127,465,20],sIdx:[0,1,2,4],cIdx:[0,2,4,7],mk:["spleen","liver","triple"]},
+
+  // ── 皮膚・美容・リフトアップ（新規）──────────────────────────
+  // 設計：pure just intonation倍音（1/1, 5/4, 3/2, 2/1）
+  // 逆位相防止：各オシレーターに微小デチューン＋開始タイミングずれ
+  // 経絡サポート：皮膚＝肺経、血流＝心経・肝経、リンパ＝三焦経・脾経
+
+  {id:"lift_collagen",cat:"beauty",name:"コラーゲン産生・リフトアップ",icon:"✨",
+   desc:"コラーゲン・エラスチン産生促進、肌の弾力・引き上げ効果\nCAFL: 174, 285, 528, 2720, 727, 880",
+   rife:[174,285,528,727,880,2720],sIdx:[0,2,4,6],cIdx:[0,1,4,5],mk:["lung","spleen","liver"]},
+
+  {id:"wrinkle",cat:"beauty",name:"しわ・たるみ改善",icon:"🌸",
+   desc:"しわ・たるみ・肌のハリ回復\nCAFL: 20, 727, 787, 880 + 528Hz（DNA修復・コラーゲン）",
+   rife:[20,174,285,528,727,787,880,2720],sIdx:[0,2,4,5],cIdx:[0,3,4,6],mk:["lung","spleen","stomach"]},
+
+  {id:"skin_regen",cat:"beauty",name:"肌細胞再生・美肌",icon:"🌟",
+   desc:"皮膚細胞の再生・ターンオーバー促進\nCAFL: 20, 727, 787, 880, 5000 + 285Hz",
+   rife:[20,285,465,727,787,880,5000,10000],sIdx:[0,2,4,6],cIdx:[0,1,4,7],mk:["lung","spleen","triple"]},
+
+  {id:"face_lymph",cat:"beauty",name:"顔のリンパ・むくみ解消",icon:"💆",
+   desc:"顔のむくみ・リンパ流促進・輪郭引き締め\nCAFL: 522, 146, 444, 880, 3176",
+   rife:[40,522,146,444,440,880,787,727,465,3176],sIdx:[0,2,4,7],cIdx:[0,1,4,5],mk:["spleen","triple","liver"]},
+
+  {id:"face_blood",cat:"beauty",name:"顔の血流・ツヤ",icon:"🔴",
+   desc:"顔面の血行促進・くすみ解消・自然なツヤ\nCAFL: sweep 2000-2200, 727, 787, 880",
+   rife:[727,787,880,2000,2112,2200,5000],sIdx:[0,1,4,6],cIdx:[0,2,4,5],mk:["heart","liver","spleen"]},
+
+  {id:"hair_growth",cat:"beauty",name:"育毛・頭皮活性",icon:"💇",
+   desc:"脱毛予防・毛根活性・頭皮血流促進\nCAFL: 20, 146, 465, 727, 800, 880, 5000 + 50Hz",
+   rife:[20,50,146,465,727,787,800,880,5000,10000],sIdx:[0,2,4,6],cIdx:[0,1,4,5],mk:["kidney","liver","gallbldr"]},
+
+  // ── 抜け毛・白髪（新規）────────────────────────────────────────
+  // 設計根拠（東洋医学）：
+  //   「腎の華は髪にあり」→ 腎経が最重要
+  //   「髪は血の余り」→ 肝経（血の貯蔵）・脾経（血の生成）
+  //   白髪の部位別：前頭部=胃経、側頭部=肝経・胆経、後頭部=腎経・膀胱経
+  // CAFL：Alopecia (10000, 5000, 2720, 2170, 1552, 880, 800, 787, 727, 465, 330, 146, 95, 20, 3)
+  // 科学的根拠：50Hz EMFが毛包幹細胞（K15+）の増殖を促進（PubMed 2019）
+  // 逆位相防止：純正律4倍音 × 微小デチューン × 開始タイミングずらし
+
+  {id:"hair_loss",cat:"beauty",name:"抜け毛・薄毛サポート",icon:"🌱",
+   desc:"毛根活性・頭皮血流促進・育毛サポート\n腎経+肝経+脾経+膀胱経で根本ケア",
+   rife:[3,20,50,95,146,330,465,727,787,800,880,1552,2170,2720,5000,10000],
+   sIdx:[0,2,4,6],cIdx:[0,1,4,7],
+   mk:["kidney","liver","spleen","bladder"]},
+
+  {id:"white_hair",cat:"beauty",name:"白髪・髪のツヤサポート",icon:"✨",
+   desc:"白髪予防・メラニン生成サポート・腎虚改善\n腎経+肝経+胃経+胆経で内側からケア",
+   rife:[20,50,95,146,330,465,727,787,880,2170,2720,5000,10000],
+   sIdx:[0,2,4,5],cIdx:[0,3,4,6],
+   mk:["kidney","liver","stomach","gallbldr"]},
+
+  {id:"acne_skin",cat:"beauty",name:"ニキビ・肌荒れ",icon:"🌿",
+   desc:"ニキビ・毛穴・皮脂バランス\nCAFL: 20, 465, 727, 787, 832, 880, 1550",
+   rife:[20,465,664,690,727,787,832,880,1550],sIdx:[0,2,4,5],cIdx:[0,3,4,6],mk:["lung","lintst","spleen"]},
+
+  {id:"skin_tight",cat:"beauty",name:"肌の引き締め・毛穴ケア",icon:"🫧",
+   desc:"毛穴・たるみ毛穴・肌テクスチャー改善\nCAFL: 727, 787, 880 + 528Hz + 2720",
+   rife:[174,528,727,787,880,2720,432],sIdx:[0,2,4,7],cIdx:[0,1,4,5],mk:["lung","spleen","stomach"]},
+
+  {id:"antiaging_full",cat:"beauty",name:"アンチエイジング総合",icon:"⭐",
+   desc:"老化防止・細胞活性・全身若返りサポート\nCAFL: 880, 787, 727, 20 + ソルフェジオ複合",
+   rife:[20,174,285,432,528,727,787,880,2720,5000,10000],sIdx:[0,2,4,6],cIdx:[0,1,4,7],mk:["kidney","liver","spleen"]},
+
+  // ── がん・腫瘍サポート ────────────────────────────────────────
+  // 設計：CAFL実証済み周波数 + 経絡（免疫・解毒系）+ 純正律倍音展開
+  // 重要：本データは研究・補完的サポート目的。医療行為の代替ではありません。
+  // 経絡選択根拠：
+  //   肝経（解毒・血の浄化）、脾経（免疫・造血）、肺経（気の主宰・皮膚）
+  //   三焦経（全身エネルギー代謝）、腎経（生命力・根本気）
+
+  {id:"cancer_general",cat:"cancer",name:"がん全般・基本サポート",icon:"🎗️",
+   desc:"がん全般の基本周波数セット（CAFL総合）\n2008Hz・2128Hz・2720Hzが中核",
+   rife:[20,120,333,464,666,727,787,880,2008,2084,2128,2489,2720,3176,5000,10000],
+   sIdx:[0,2,4,6],cIdx:[0,1,4,7],mk:["liver","spleen","triple","kidney"]},
+
+  {id:"cancer_immune",cat:"cancer",name:"免疫活性・自然治癒力強化",icon:"🛡️",
+   desc:"がんに対する免疫応答の活性化サポート\nCAFL: 2008, 2127, 727, 787, 880, 1550",
+   rife:[128,512,727,787,880,1550,2008,2127,2489,5000,10000],
+   sIdx:[0,1,4,7],cIdx:[0,2,4,7],mk:["spleen","triple","lung","kidney"]},
+
+  {id:"cancer_detox",cat:"cancer",name:"解毒・デトックスサポート",icon:"🌿",
+   desc:"腫瘍由来毒素・治療副作用の解毒サポート\nCAFL: 727, 787, 880, 2008, 5000",
+   rife:[727,787,880,2008,2127,5000,10000,3176],
+   sIdx:[0,2,4,5],cIdx:[0,3,4,6],mk:["liver","gallbldr","triple","kidney"]},
+
+  {id:"cancer_breast",cat:"cancer",name:"乳がんサポート",icon:"🎀",
+   desc:"乳がん補完サポート\nCAFL: 20, 465, 660, 727, 880, 1840, 2008, 2128, 2876",
+   rife:[20,465,660,665,690,727,740,787,880,1840,1998,2008,2128,2876,5000,10000],
+   sIdx:[0,2,4,6],cIdx:[0,1,4,5],mk:["liver","spleen","stomach","lung"]},
+
+  {id:"cancer_prostate",cat:"cancer",name:"前立腺がんサポート",icon:"🔵",
+   desc:"前立腺がん補完サポート\nCAFL: 666, 2125, 2128, 2131, 2140, 3672",
+   rife:[306,522,650,666,727,787,880,2008,2125,2128,2131,2140,2145,3672,10000],
+   sIdx:[0,2,4,5],cIdx:[0,3,4,7],mk:["kidney","bladder","liver","triple"]},
+
+  {id:"cancer_lung",cat:"cancer",name:"肺がんサポート",icon:"🫁",
+   desc:"肺・気道がん補完サポート\nCAFL: 727, 880, 2008, 2128 + 肺経サポート",
+   rife:[20,465,727,787,880,2008,2128,2720,5000,10000],
+   sIdx:[0,2,4,6],cIdx:[0,1,4,5],mk:["lung","lintst","spleen","kidney"]},
+
+  {id:"cancer_stomach",cat:"cancer",name:"胃・消化器がんサポート",icon:"🌀",
+   desc:"胃・大腸・消化器系がん補完サポート\nCAFL: 676, 727, 880, 2008, 2128",
+   rife:[240,465,666,676,727,787,880,2008,2128,3176,5000,10000],
+   sIdx:[0,2,4,6],cIdx:[0,1,4,5],mk:["stomach","spleen","lintst","liver"]},
+
+  {id:"cancer_liver",cat:"cancer",name:"肝臓・膵臓がんサポート",icon:"🫀",
+   desc:"肝臓・膵臓がん補完サポート\nCAFL: 317, 727, 880, 2008, 2128",
+   rife:[317,465,666,727,787,880,2008,2128,2489,5000,10000],
+   sIdx:[0,2,4,6],cIdx:[0,3,4,7],mk:["liver","gallbldr","spleen","triple"]},
+
+  {id:"cancer_brain",cat:"cancer",name:"脳腫瘍サポート",icon:"🧠",
+   desc:"脳腫瘍・グリオブラストーマ補完サポート\nCAFL: 543, 641, 2008, 2128, 2182",
+   rife:[20,465,543,641,664,720,727,800,832,855,857,880,2008,2128,2180,2182,5000,10000],
+   sIdx:[0,2,4,6],cIdx:[0,1,4,7],mk:["liver","kidney","heart","triple"]},
+
+  {id:"cancer_leukemia",cat:"cancer",name:"白血病・血液がんサポート",icon:"🩸",
+   desc:"白血病・血液系がん補完サポート\nCAFL: 590, 666, 727, 880, 2008, 2128",
+   rife:[428,440,450,465,590,666,690,727,787,880,1850,2008,2128,5000,10000],
+   sIdx:[0,2,4,6],cIdx:[0,1,4,5],mk:["spleen","liver","heart","kidney"]},
+
+  {id:"cancer_lymph",cat:"cancer",name:"リンパ腫サポート",icon:"🫧",
+   desc:"リンパ腫・ホジキン病補完サポート\nCAFL: 552, 727, 880, 1522, 2008, 2128",
+   rife:[465,522,552,666,727,787,880,1522,2008,2127,2128,3176,5000,10000],
+   sIdx:[0,2,4,6],cIdx:[0,1,4,7],mk:["spleen","triple","liver","lung"]},
+
+  {id:"cancer_uterus",cat:"cancer",name:"子宮・卵巣がんサポート",icon:"🌸",
+   desc:"子宮・卵巣がん補完サポート\nCAFL: 523, 666, 727, 880, 2008, 2128",
+   rife:[20,465,523,666,727,787,880,2008,2128,2720,5000,10000],
+   sIdx:[0,2,4,5],cIdx:[0,3,4,6],mk:["liver","spleen","kidney","triple"]},
+
+  {id:"cancer_skin",cat:"cancer",name:"皮膚がん・メラノーマサポート",icon:"🌟",
+   desc:"皮膚がん・メラノーマ補完サポート\nCAFL: 464, 727, 880, 2008, 2128",
+   rife:[20,249,418,464,666,727,787,880,2008,2128,2720,5000,10000],
+   sIdx:[0,2,4,6],cIdx:[0,1,4,5],mk:["lung","liver","spleen","triple"]},
+
+  {id:"cancer_harmonic",cat:"cancer",name:"ライフ倍音シリーズ（66.5Hz基音）",icon:"🌈",
+   desc:"ライフオリジナル倍音シリーズ\n66.5Hzを基音として純正律展開",
+   rife:[66.5,133,199.5,266,332.5,399,465.5,532,598.5,665],
+   sIdx:[0,2,4,6],cIdx:[0,1,4,5],mk:["liver","spleen","kidney","triple"]},
+];
+
+// 周波数マスターDB
+const RIFE_DB=[
+  {id:"r001",cat:"感染・免疫",name:"一般細菌感染",hz:"727,787,880,20",keys:"細菌,感染,発熱,炎症"},
+  {id:"r002",cat:"感染・免疫",name:"ウイルス感染",hz:"727,787,880,464,1550",keys:"ウイルス,感染,発熱"},
+  {id:"r003",cat:"感染・免疫",name:"インフルエンザ",hz:"727,787,880,1550,625,776",keys:"インフル,風邪,発熱,ウイルス"},
+  {id:"r004",cat:"感染・免疫",name:"カンジダ菌",hz:"464,942,1453,2250",keys:"カンジダ,真菌,酵母,かゆみ"},
+  {id:"r005",cat:"感染・免疫",name:"大腸菌",hz:"380,420,660,776",keys:"大腸菌,腸炎,下痢,食中毒"},
+  {id:"r006",cat:"感染・免疫",name:"免疫強化",hz:"727,787,880,1550,2008,2127",keys:"免疫,自然治癒力,免疫低下"},
+  {id:"r007",cat:"感染・免疫",name:"アレルギー",hz:"880,787,727,522,146",keys:"アレルギー,花粉,鼻炎,じんましん"},
+  {id:"r008",cat:"呼吸器",name:"気管支炎",hz:"880,787,727,522,465",keys:"気管支炎,咳,たん,呼吸"},
+  {id:"r009",cat:"呼吸器",name:"喘息",hz:"880,787,727,522,333,146",keys:"喘息,呼吸困難,ぜんそく"},
+  {id:"r010",cat:"呼吸器",name:"肺炎",hz:"880,787,727,600,465,120",keys:"肺炎,肺,咳,発熱,呼吸"},
+  {id:"r011",cat:"呼吸器",name:"副鼻腔炎・鼻炎",hz:"880,787,727,461,160,20",keys:"副鼻腔炎,鼻炎,鼻づまり,花粉"},
+  {id:"r012",cat:"消化器",name:"胃炎・胃痛",hz:"880,727,465,440,250,125",keys:"胃炎,胃痛,胃もたれ,消化不良"},
+  {id:"r013",cat:"消化器",name:"便秘",hz:"3176,1550,880,832,787,776,727,444,20",keys:"便秘,腸,排便,宿便"},
+  {id:"r014",cat:"消化器",name:"下痢",hz:"880,787,727,465,444",keys:"下痢,軟便,腸炎,過敏性腸"},
+  {id:"r015",cat:"消化器",name:"腸内細菌異常",hz:"240,448,688,776,880",keys:"腸内細菌,腸内フローラ,便秘,下痢"},
+  {id:"r016",cat:"消化器",name:"肝臓疾患",hz:"727,787,880,317,522",keys:"肝臓,肝炎,肝機能,黄疸,解毒"},
+  {id:"r017",cat:"泌尿器",name:"膀胱炎",hz:"254,660,728,784,880",keys:"膀胱炎,排尿,頻尿,尿"},
+  {id:"r018",cat:"泌尿器",name:"腎臓疾患",hz:"317,527,787,880,150",keys:"腎臓,腎炎,むくみ,腎不全"},
+  {id:"r019",cat:"泌尿器",name:"前立腺炎",hz:"306,522,650,784,880",keys:"前立腺,排尿困難,男性"},
+  {id:"r020",cat:"泌尿器",name:"生理痛・更年期",hz:"880,787,727,523,432",keys:"生理痛,月経,更年期,ホルモン"},
+  {id:"r021",cat:"筋骨格",name:"腰痛",hz:"9.6,80,880,2720,727,787",keys:"腰痛,ぎっくり腰,腰,背中,脊椎"},
+  {id:"r022",cat:"筋骨格",name:"関節炎",hz:"20,727,787,880,5000",keys:"関節炎,関節痛,リウマチ,関節"},
+  {id:"r023",cat:"筋骨格",name:"肩こり・首こり",hz:"9.6,80,880,787,727",keys:"肩こり,首こり,頸部,こり"},
+  {id:"r024",cat:"筋骨格",name:"坐骨神経痛",hz:"880,787,727,465,125",keys:"坐骨神経痛,坐骨,神経痛,しびれ"},
+  {id:"r025",cat:"神経・精神",name:"ストレス・不安",hz:"40,528,741,852",keys:"ストレス,不安,緊張,パニック"},
+  {id:"r026",cat:"神経・精神",name:"不眠症",hz:"40,528,741,10",keys:"不眠,睡眠,眠れない"},
+  {id:"r027",cat:"神経・精神",name:"うつ症状",hz:"727,787,880,10000,125",keys:"うつ,抑うつ,気分,精神"},
+  {id:"r028",cat:"神経・精神",name:"頭痛・片頭痛",hz:"880,787,727,20",keys:"頭痛,片頭痛,偏頭痛"},
+  {id:"r029",cat:"神経・精神",name:"自律神経失調",hz:"728,784,880,64,1000",keys:"自律神経,動悸,冷え"},
+  {id:"r030",cat:"循環器",name:"高血圧",hz:"880,787,727,2500,125",keys:"高血圧,血圧,動脈,心臓"},
+  {id:"r031",cat:"循環器",name:"動悸・不整脈",hz:"880,787,727,250,125",keys:"動悸,不整脈,心臓,ドキドキ"},
+  {id:"r032",cat:"循環器",name:"血液循環不全",hz:"880,787,727,2000,125",keys:"血行不良,冷え,むくみ,循環"},
+  {id:"r033",cat:"代謝・内分泌",name:"糖尿病",hz:"727,787,880,10000",keys:"糖尿病,血糖,インスリン,代謝"},
+  {id:"r034",cat:"代謝・内分泌",name:"甲状腺疾患",hz:"2790,2483,2127,880,787,727",keys:"甲状腺,バセドウ,橋本,ホルモン"},
+  {id:"r035",cat:"代謝・内分泌",name:"貧血",hz:"880,787,727,728,20",keys:"貧血,鉄分,血液,ヘモグロビン"},
+  {id:"r036",cat:"皮膚",name:"アトピー・湿疹",hz:"880,787,727,465,1550",keys:"アトピー,湿疹,かゆみ,皮膚炎"},
+  {id:"r037",cat:"皮膚",name:"ニキビ",hz:"880,787,727,1550,125",keys:"ニキビ,吹き出物,皮脂"},
+  {id:"r038",cat:"目・耳・鼻",name:"目の疲れ・視力",hz:"880,787,727,120",keys:"目の疲れ,視力,眼精疲労"},
+  {id:"r039",cat:"目・耳・鼻",name:"耳鳴り",hz:"880,787,727,464,250",keys:"耳鳴り,耳,難聴,聴力"},
+  {id:"r040",cat:"疲労・活力",name:"慢性疲労",hz:"428,660,728,800,880",keys:"疲労,だるさ,倦怠感"},
+  {id:"r041",cat:"疲労・活力",name:"気力・活力低下",hz:"128,512,727,787",keys:"気力,元気,活力,エネルギー"},
+  {id:"r042",cat:"疲労・活力",name:"睡眠改善",hz:"40,528,741,10,174",keys:"睡眠,眠り,入眠,深い睡眠"},
+  {id:"r043",cat:"がん・腫瘍",name:"がん全般（基本）",hz:"10000,5000,2720,2128,2008,880,784,728,666,464,333,120,20",keys:"がん,腫瘍,癌"},
+  {id:"r044",cat:"解毒",name:"デトックス・解毒",hz:"727,787,880,2008,2127,5000",keys:"解毒,デトックス,毒素"},
+  {id:"r045",cat:"解毒",name:"重金属解毒",hz:"727,787,880,20",keys:"重金属,水銀,鉛,解毒"},
+  {id:"r046",cat:"万能",name:"万能セット①",hz:"727,787,880,20",keys:"万能,あらゆる病気,全般"},
+  {id:"r047",cat:"万能",name:"万能セット②",hz:"727,787,880,1550,464",keys:"万能,感染症,免疫"},
+  {id:"r048",cat:"万能",name:"早期ライフ完全セット",hz:"10000,5000,3500,2250,2127,2008,1550,880,802,787,784,776,727,660,625,465,250,125,80,20",keys:"完全セット,ライフ原本,総合"},
+];
+const MERIDIAN_DB=[
+  {id:"m001",name:"肺経",  hz:"2287",  keys:"肺,呼吸,咳,喘息,皮膚,免疫",color:"#aaddff"},
+  {id:"m002",name:"大腸経",hz:"4230",  keys:"大腸,便秘,下痢,排泄,肌荒れ",color:"#a8ff78"},
+  {id:"m003",name:"胃経",  hz:"126.9", keys:"胃,消化,食欲不振,胃痛",color:"#ffe066"},
+  {id:"m004",name:"脾経",  hz:"264.9", keys:"脾臓,消化,免疫,むくみ,だるさ",color:"#ffaa44"},
+  {id:"m005",name:"心経",  hz:"289",   keys:"心臓,循環,動悸,不眠,精神",color:"#ff4488"},
+  {id:"m006",name:"小腸経",hz:"316",   keys:"小腸,吸収,消化,肩こり",color:"#ff6644"},
+  {id:"m007",name:"膀胱経",hz:"343.8", keys:"膀胱,排尿,腰痛,頭痛,恐れ",color:"#44aaff"},
+  {id:"m008",name:"腎経",  hz:"383.7", keys:"腎臓,生命力,むくみ,疲労,腰",color:"#4466ff"},
+  {id:"m009",name:"心包経",hz:"477",   keys:"循環,保護,感情,動悸,胸痛",color:"#cc44ff"},
+  {id:"m010",name:"三焦経",hz:"496",   keys:"代謝,体温,エネルギー,むくみ",color:"#ff8844"},
+  {id:"m011",name:"胆経",  hz:"506.8", keys:"胆嚢,判断力,筋肉,偏頭痛",color:"#44ff88"},
+  {id:"m012",name:"肝経",  hz:"1032",  keys:"肝臓,解毒,血,目,怒り,月経",color:"#88ff44"},
+  {id:"m013",name:"任脈",  hz:"60",    keys:"陰の統括,生殖,妊娠,腹部",color:"#ffffff"},
+  {id:"m014",name:"督脈",  hz:"100.9", keys:"陽の統括,脊髄,脳,活力",color:"#ffff44"},
+];
+const ORGAN_DB=[
+  {id:"o001",name:"脳",    hz:"70",    keys:"脳,記憶,認知,神経,頭痛"},
+  {id:"o002",name:"心臓",  hz:"696",   keys:"心臓,動悸,循環,血圧"},
+  {id:"o003",name:"肺",    hz:"220",   keys:"肺,呼吸,咳,喘息"},
+  {id:"o004",name:"肝臓",  hz:"317.83",keys:"肝臓,解毒,疲労,アルコール"},
+  {id:"o005",name:"胆嚢",  hz:"164.3", keys:"胆嚢,胆石,消化,脂肪"},
+  {id:"o006",name:"胃",    hz:"110",   keys:"胃,消化,胃炎,食欲"},
+  {id:"o007",name:"脾臓",  hz:"492",   keys:"脾臓,免疫,血液,貧血"},
+  {id:"o008",name:"膵臓",  hz:"117.3", keys:"膵臓,血糖,インスリン,糖尿病"},
+  {id:"o009",name:"小腸",  hz:"281",   keys:"小腸,吸収,消化,腸内細菌"},
+  {id:"o010",name:"大腸",  hz:"176",   keys:"大腸,便秘,下痢,排泄"},
+  {id:"o011",name:"腎臓",  hz:"319.88",keys:"腎臓,むくみ,尿,老廃物"},
+  {id:"o012",name:"膀胱",  hz:"352",   keys:"膀胱,排尿,頻尿,膀胱炎"},
+  {id:"o013",name:"副腎",  hz:"492.8", keys:"副腎,ストレス,疲労,アドレナリン"},
+  {id:"o014",name:"甲状腺",hz:"442",   keys:"甲状腺,バセドウ,橋本,代謝"},
+  {id:"o015",name:"骨",    hz:"418.3", keys:"骨,骨折,骨密度,カルシウム"},
+  {id:"o016",name:"筋肉",  hz:"324",   keys:"筋肉,筋肉痛,こり,スポーツ"},
+  {id:"o017",name:"皮膚",  hz:"100",   keys:"皮膚,肌,アトピー,美容"},
+  {id:"o018",name:"血液",  hz:"321.9", keys:"血液,貧血,血流,白血球"},
+  {id:"o019",name:"リンパ",hz:"20",    keys:"リンパ,むくみ,免疫,デトックス"},
+  {id:"o020",name:"神経",  hz:"573",   keys:"神経,神経痛,しびれ,自律神経"},
+];
+const SOLFEGGIO_DB=[
+  {id:"s001",name:"174Hz ソルフェジオ",  hz:"174",      keys:"痛み緩和,安心,基盤,安定"},
+  {id:"s002",name:"285Hz ソルフェジオ",  hz:"285",      keys:"細胞修復,組織再生,傷,回復"},
+  {id:"s003",name:"396Hz ルートチャクラ",hz:"396",      keys:"恐れ解放,グラウンディング,安定"},
+  {id:"s004",name:"417Hz 仙骨チャクラ",  hz:"417",      keys:"変容,創造性,感情,変化"},
+  {id:"s005",name:"528Hz ミラクル",      hz:"528",      keys:"DNA修復,愛,変容,奇跡"},
+  {id:"s006",name:"639Hz ハートチャクラ",hz:"639",      keys:"人間関係,愛,調和,つながり"},
+  {id:"s007",name:"741Hz 喉チャクラ",    hz:"741",      keys:"表現,真実,コミュニケーション"},
+  {id:"s008",name:"852Hz 第三の目",      hz:"852",      keys:"直感,洞察,松果体,覚醒"},
+  {id:"s009",name:"963Hz クラウン",      hz:"963",      keys:"宇宙意識,覚醒,神性,頭頂"},
+  {id:"s010",name:"432Hz 自然調律",      hz:"432",      keys:"自然,調和,宇宙,ヒーリング"},
+  {id:"s011",name:"7.83Hz シューマン共振",hz:"7.83,14.1,20.3",keys:"シューマン,地球,アルファ波,瞑想"},
+  {id:"s012",name:"136.1Hz 地球公転",    hz:"136.1",    keys:"地球,公転,OM,グラウンディング"},
+  {id:"s013",name:"126.22Hz 太陽",       hz:"126.22",   keys:"太陽,エネルギー,活力,光"},
+  {id:"s014",name:"8.02Hz シトクロムC",  hz:"8.02",     keys:"シトクロム,ミトコンドリア,ATP,細胞エネルギー"},
+];
+const ALL_DB=[
+  ...RIFE_DB.map(r=>({...r,dbType:"ライフ",color:"#ff6b35"})),
+  ...MERIDIAN_DB.map(m=>({...m,cat:"経絡",dbType:"経絡"})),
+  ...ORGAN_DB.map(o=>({...o,cat:"臓器",dbType:"臓器",color:"#4dffb4"})),
+  ...SOLFEGGIO_DB.map(s=>({...s,cat:"ソルフェジオ",dbType:"ソルフェジオ",color:"#c44dff"})),
+];
+
+// ============================================================
+// 音声エンジン（最シンプル・確実動作版）
+// ============================================================
+let audioCtx=null, audioOscs=[], audioTimers=[];
+let playing=false, remaining=0, totalSec=1200;
+let repeatMode=false, currentPlayFn=null;
+let vol=0.8, sVol=0.6, cVol=0.6;
+
+// ── バックグラウンド再生：無音ループ用 <audio> 要素 ──────────
+// iOSはWeb Audio APIだけでは画面消灯で停止するため
+// 無音の <audio> ループを同時に流すことでオーディオセッションを維持する
+let bgAudio=null;
+function startBgAudioKeepAlive(){
+  if(bgAudio)return;
+  // 1秒の無音WAVをBase64で埋め込み（外部ファイル不要）
+  const silentWav="data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
+  bgAudio=document.createElement("audio");
+  bgAudio.src=silentWav;
+  bgAudio.loop=true;
+  bgAudio.volume=0.001; // 無音に近いが0だと止まる機種がある
+  bgAudio.play().catch(()=>{});
+}
+function stopBgAudioKeepAlive(){
+  if(!bgAudio)return;
+  bgAudio.pause();bgAudio.src="";bgAudio=null;
+}
+
+// ── MediaSession API：ロック画面に再生コントロールを表示 ──────
+function setupMediaSession(title){
+  if(!("mediaSession" in navigator))return;
+  navigator.mediaSession.metadata=new MediaMetadata({
+    title: title||"細胞共鳴セラピー",
+    artist: "ヒーリングサウンド セラピー",
+    album: "バイオレゾナンス",
+  });
+  navigator.mediaSession.setActionHandler("play", ()=>{
+    if(currentPlayFn&&!playing)currentPlayFn();
+  });
+  navigator.mediaSession.setActionHandler("pause", ()=>{
+    if(playing){stopAudio();updateAllTimers();}
+  });
+  navigator.mediaSession.setActionHandler("stop", ()=>{
+    stopAudio();updateAllTimers();
+  });
+  navigator.mediaSession.playbackState="playing";
+}
+
+function stopAudio(){
+  audioOscs.forEach(o=>{try{o.stop();}catch(e){}});
+  audioOscs=[];
+  audioTimers.forEach(t=>clearInterval(t));
+  audioTimers=[];
+  if(audioCtx){try{audioCtx.close();}catch(e){}}
+  audioCtx=null;
+  playing=false;remaining=0;
+  stopBgAudioKeepAlive();
+  if("mediaSession" in navigator)
+    navigator.mediaSession.playbackState="none";
+}
+
+// オシレーター1本追加（最シンプル）
+function addOsc(freq, gainVal, dest){
+  const o=audioCtx.createOscillator();
+  o.type="sine";
+  o.frequency.value=freq;
+  const g=audioCtx.createGain();
+  g.gain.value=gainVal;
+  o.connect(g);g.connect(dest);
+  o.start();
+  audioOscs.push(o);
+}
+
+// アイソクロニック
+function addIsochronic(freq, isoHz, gainVal, dest){
+  const o=audioCtx.createOscillator();
+  o.type="sine";o.frequency.value=freq;
+  const ig=audioCtx.createGain();ig.gain.value=0;
+  o.connect(ig);ig.connect(dest);o.start();
+  audioOscs.push(o);
+  const p=1/isoHz, on=p*0.45;
+  let next=audioCtx.currentTime+0.1;
+  const sched=()=>{
+    if(!audioCtx)return;
+    const ahead=audioCtx.currentTime+3;
+    while(next<ahead){
+      ig.gain.setValueAtTime(0,next);
+      ig.gain.linearRampToValueAtTime(gainVal,next+0.01);
+      ig.gain.setValueAtTime(gainVal,next+on-0.01);
+      ig.gain.linearRampToValueAtTime(0,next+on);
+      ig.gain.setValueAtTime(0,next+p);
+      next+=p;
+    }
+  };
+  sched();
+  audioTimers.push(setInterval(sched,800));
+}
+
+// AudioContext作成＋resume（resume完了後にコールバック実行）
+function createCtxAndRun(callback, sessionTitle){
+  stopAudio();
+  audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+  const run=()=>{
+    const master=audioCtx.createGain();
+    master.gain.value=vol;
+    master.connect(audioCtx.destination);
+    callback(master);
+    startTimer();
+    playing=true;
+    // バックグラウンド再生を有効化
+    startBgAudioKeepAlive();
+    setupMediaSession(sessionTitle);
+  };
+  if(audioCtx.state==="suspended"){
+    audioCtx.resume().then(run).catch(run);
+  } else {
+    run();
+  }
+}
+
+function startSCScene(scene){
+  createCtxAndRun(master=>{
+    const JI=[1, 5/4, 3/2, 2];
+    // シューマン系ドローン
+    const sFreqs=scene.sIdx.map(i=>S_BASE*JR[i]);
+    sFreqs.forEach((f,fi)=>{
+      JI.forEach((ratio,ri)=>{
+        const x=f*ratio;if(x>18000)return;
+        const detune=1+(fi*0.00031+ri*0.00019+fi*ri*0.0001);
+        const g=sVol*0.38/sFreqs.length/(ri+1);
+        const o=audioCtx.createOscillator();o.type="sine";o.frequency.value=x*detune;
+        const gn=audioCtx.createGain();gn.gain.value=g;
+        o.connect(gn);gn.connect(master);
+        o.start(audioCtx.currentTime+fi*0.004+ri*0.003);
+        audioOscs.push(o);
+      });
+    });
+    // シトクロムC系ドローン
+    const cFreqs=scene.cIdx.map(i=>C_BASE*JR[i]);
+    cFreqs.forEach((f,fi)=>{
+      JI.forEach((ratio,ri)=>{
+        const x=f*ratio;if(x>18000)return;
+        const detune=1+(fi*0.00031+ri*0.00019+fi*ri*0.0001);
+        const g=cVol*0.38/cFreqs.length/(ri+1);
+        const o=audioCtx.createOscillator();o.type="sine";o.frequency.value=x*detune;
+        const gn=audioCtx.createGain();gn.gain.value=g;
+        o.connect(gn);gn.connect(master);
+        o.start(audioCtx.currentTime+fi*0.004+ri*0.003+0.05);
+        audioOscs.push(o);
+      });
+    });
+    addIsochronic(S_BASE,7.83,0.6,master);
+    addIsochronic(C_BASE,8.02,0.6,master);
+  });
+}
+
+function startFreqScene(freqs,isoFreq,title){
+  const playable=freqs.filter(f=>f>=20&&f<=18000);
+  if(!playable.length)return;
+  createCtxAndRun(master=>{
+    // 純正律4倍音 + 微小デチューン + 開始タイミングずらし → 逆位相キャンセル防止
+    // 1/1, 5/4, 3/2, 2/1（純正律整数比）
+    const JI=[1, 5/4, 3/2, 2];
+    playable.forEach((f,fi)=>{
+      JI.forEach((ratio,ri)=>{
+        const x=f*ratio;
+        if(x>18000)return;
+        // fi・riごとに異なる微小デチューン（絶対に同位相にならない）
+        const detune=1+(fi*0.00031+ri*0.00019+fi*ri*0.0001);
+        const g=0.5/Math.max(playable.length,1)/(ri+1);
+        const o=audioCtx.createOscillator();
+        o.type="sine";o.frequency.value=x*detune;
+        const gn=audioCtx.createGain();gn.gain.value=g;
+        o.connect(gn);gn.connect(master);
+        // 開始タイミングを各オシレーターでずらす（位相揃い防止）
+        o.start(audioCtx.currentTime+fi*0.004+ri*0.003);
+        audioOscs.push(o);
+      });
+    });
+    addIsochronic(playable[0],isoFreq||7.83,0.55,master);
+    addIsochronic(S_BASE,7.83,0.5,master);
+    addIsochronic(C_BASE,8.02,0.5,master);
+  });
+}
+
+function startTimer(){
+  remaining=totalSec;
+  const t=setInterval(()=>{
+    remaining--;
+    updateAllTimers();
+    if(remaining<=0){
+      clearInterval(t);
+      if(repeatMode&&currentPlayFn){ currentPlayFn(); }
+      else{ stopAudio();playing=false;updateAllTimers(); }
+    }
+  },1000);
+  audioTimers.push(t);
+}
+
+function updateAllTimers(){
+  document.querySelectorAll(".cd-display").forEach(el=>{
+    el.textContent=fmt(remaining);
+    el.style.color=remaining<=60?"#ff4466":"";
+  });
+  document.querySelectorAll(".cd-fill").forEach(el=>{
+    el.style.width=`${Math.max(0,(remaining/totalSec)*100)}%`;
+    el.style.background=remaining<=60?"linear-gradient(90deg,#ff4466,#ff8844)":"linear-gradient(90deg,#4dffb4,#c44dff)";
+  });
+  document.querySelectorAll(".cd-label").forEach(el=>{
+    el.textContent=playing?(remaining<=60?"残り1分以内":"残り "+fmt(remaining)):"";
+  });
+}
+
+const fmt=s=>{const n=Math.max(0,Math.floor(s));return String(Math.floor(n/60)).padStart(2,"0")+":"+String(n%60).padStart(2,"0");};
+
+// ============================================================
+// プレイヤーUI（共通パーツ）
+// ============================================================
+function playerHTML(color,showSCVol){
+  return `
+  <div class="repeat-toggle" onclick="repeatMode=!repeatMode;renderRepeat(this);">
+    <span style="font-size:14px;color:#aaa;flex:1;">🔁 リピート再生</span>
+    <div class="toggle-pill ${repeatMode?'on':''}"><div class="toggle-dot"></div></div>
+  </div>
+  <div style="text-align:center;margin-bottom:10px;">
+    <div class="countdown cd-display" style="color:${color}">${fmt(totalSec)}</div>
+    <div class="prog-bar"><div class="prog-fill cd-fill" style="width:100%;background:linear-gradient(90deg,${color},#c44dff)"></div></div>
+    <div class="cd-label" style="font-size:12px;color:#888;margin-top:4px;"></div>
+  </div>
+  <div style="margin-bottom:12px;">
+    <div style="font-size:13px;color:#aaa;margin-bottom:6px;">⏱ セラピー時間</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;" id="timeBtns">
+      ${[[300,"5分"],[600,"10分"],[1200,"20分"],[1800,"30分"],[3600,"60分"]].map(([s,l])=>`<button class="btn-small ${totalSec===s?'active-btn':''}" onclick="setTime(${s})">${l}</button>`).join("")}
+    </div>
+  </div>
+  <div style="background:#ffffff0a;border-radius:12px;padding:12px 14px;border:1px solid #ffffff18;margin-bottom:10px;">
+    <div style="display:flex;justify-content:space-between;font-size:14px;color:#ccc;margin-bottom:6px;"><span>🔊 音量</span><span id="volLabel" style="color:${color}">${Math.round(vol*100)}%</span></div>
+    <input type="range" min="0" max="1" step="0.01" value="${vol}" oninput="setVol(this.value,'${color}')">
+  </div>
+  ${showSCVol?`
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
+    <div style="background:#4dffb418;border-radius:12px;padding:10px 12px;border:1px solid #4dffb433;">
+      <div style="display:flex;justify-content:space-between;font-size:13px;color:#4dffb4;margin-bottom:5px;"><span>🌍 シューマン</span><span id="sVolLabel">${Math.round(sVol*100)}%</span></div>
+      <input type="range" min="0" max="1" step="0.01" value="${sVol}" oninput="setSVol(this.value)" style="accent-color:#4dffb4">
+    </div>
+    <div style="background:#ffe06618;border-radius:12px;padding:10px 12px;border:1px solid #ffe06633;">
+      <div style="display:flex;justify-content:space-between;font-size:13px;color:#ffe066;margin-bottom:5px;"><span>⚡ シトクロムC</span><span id="cVolLabel">${Math.round(cVol*100)}%</span></div>
+      <input type="range" min="0" max="1" step="0.01" value="${cVol}" oninput="setCVol(this.value)" style="accent-color:#ffe066">
+    </div>
+  </div>`:""}`;
+}
+
+function renderRepeat(el){
+  const pill=el.querySelector(".toggle-pill");
+  pill.classList.toggle("on",repeatMode);
+}
+
+function setTime(s){
+  totalSec=s;
+  if(!playing)remaining=s;
+  document.querySelectorAll("#timeBtns button").forEach(b=>{b.classList.toggle("active-btn",parseInt(b.textContent)===s/60||b.textContent===fmt(s).replace(/:00$/,"分"));});
+  updateAllTimers();
+}
+function setVol(v,c){vol=parseFloat(v);const l=document.getElementById("volLabel");if(l){l.textContent=Math.round(vol*100)+"%";}}
+function setSVol(v){sVol=parseFloat(v);const l=document.getElementById("sVolLabel");if(l)l.textContent=Math.round(sVol*100)+"%";}
+function setCVol(v){cVol=parseFloat(v);const l=document.getElementById("cVolLabel");if(l)l.textContent=Math.round(cVol*100)+"%";}
+
+// WAVダウンロード
+function bufferToWav(buf){
+  const nc=buf.numberOfChannels,sr=buf.sampleRate,len=buf.length;
+  const bps=2,ds=nc*len*bps,ab=new ArrayBuffer(44+ds),v=new DataView(ab);
+  const ws=(o,s)=>{for(let i=0;i<s.length;i++)v.setUint8(o+i,s.charCodeAt(i));};
+  ws(0,"RIFF");v.setUint32(4,36+ds,true);ws(8,"WAVE");ws(12,"fmt ");v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,nc,true);v.setUint32(24,sr,true);v.setUint32(28,sr*nc*bps,true);v.setUint16(32,nc*bps,true);v.setUint16(34,16,true);ws(36,"data");v.setUint32(40,ds,true);
+  let off=44;for(let i=0;i<len;i++)for(let ch=0;ch<nc;ch++){const s=Math.max(-1,Math.min(1,buf.getChannelData(ch)[i]));v.setInt16(off,s<0?s*0x8000:s*0x7FFF,true);off+=2;}
+  return new Blob([ab],{type:"audio/wav"});
+}
+async function downloadWav(freqs,dur,name){
+  const btn=event.target;btn.textContent="⏳...";btn.disabled=true;
+  try{
+    const SR=44100,frames=SR*dur,off=new OfflineAudioContext(2,frames,SR);
+    const m=off.createGain();m.gain.value=vol;m.connect(off.destination);
+    m.gain.setValueAtTime(0,0);
+    m.gain.linearRampToValueAtTime(vol,3);
+    m.gain.setValueAtTime(vol,dur-3);
+    m.gain.linearRampToValueAtTime(0,dur);
+    // ドローン（純正律展開・デチューン）
+    const pf=freqs.filter(f=>f>=20&&f<=18000);
+    const dg=off.createGain();dg.gain.value=0.65;dg.connect(m);
+    pf.forEach((f,fi)=>{
+      [f,f*5/4,f*3/2,f*2].filter(x=>x<=18000).forEach((x,ri)=>{
+        const o=off.createOscillator();o.type="sine";
+        o.frequency.value=x*(1+(fi*0.0003+ri*0.0002));
+        const g=off.createGain();g.gain.value=0.45/Math.max(pf.length,1)/(ri+1);
+        o.connect(g);g.connect(dg);o.start();o.stop(dur);
+      });
+    });
+    // アイソクロニック
+    [[S_BASE,7.83],[C_BASE,8.02]].forEach(([b,iso])=>{
+      const o=off.createOscillator();o.type="sine";o.frequency.value=b;
+      const ig=off.createGain();ig.gain.value=0;
+      o.connect(ig);ig.connect(m);o.start();o.stop(dur);
+      const p=1/iso,on=p*0.45;let t=0.1;
+      while(t<dur){
+        ig.gain.setValueAtTime(0,t);
+        ig.gain.linearRampToValueAtTime(0.65,t+0.01);
+        ig.gain.setValueAtTime(0.65,t+on-0.01);
+        ig.gain.linearRampToValueAtTime(0,t+on);
+        ig.gain.setValueAtTime(0,t+p);
+        t+=p;
+      }
+    });
+    const buf=await off.startRendering();
+    const wav=bufferToWav(buf),url=URL.createObjectURL(wav),a=document.createElement("a");
+    a.href=url;a.download=`${name}_${Math.round(dur/60)}min.wav`;a.click();URL.revokeObjectURL(url);
+    btn.textContent="✅ 完了！";setTimeout(()=>{btn.textContent="⬇️ WAVダウンロード";btn.disabled=false;},3000);
+  }catch(e){console.error(e);btn.textContent="⬇️ WAV";btn.disabled=false;}
+}
+
+// ============================================================
+// 管理者
+// ============================================================
+function toggleAdmin(){
+  if(isAdmin){isAdmin=false;document.getElementById("adminBtn").style.cssText="padding:8px 16px;border-radius:10px;background:#111;border:1px solid #333;color:#888;font-size:12px;";document.getElementById("adminBadge").style.display="none";return;}
+  const pw=prompt("管理者パスワードを入力:");
+  if(pw===ADMIN_PW){isAdmin=true;document.getElementById("adminBtn").style.cssText="padding:8px 16px;border-radius:10px;background:#330000;border:1px solid #ff336644;color:#ff3366;font-size:12px;";document.getElementById("adminBadge").style.display="block";}
+  else if(pw!==null)alert("パスワードが違います");
+}
+
+// ============================================================
+// 瞑想シーン
+// ============================================================
+let currentSCScene=SC_SCENES[0];
+function initMeditation(){
+  const grid=document.getElementById("sceneGrid");grid.innerHTML="";
+  SC_SCENES.forEach(s=>{
+    const d=document.createElement("div");
+    d.className="scene-card";d.style.cssText=`background:${s.color}18;border-color:${currentSCScene.id===s.id?s.color:s.color+"44"};box-shadow:${currentSCScene.id===s.id?`0 0 16px ${s.color}33`:"none"}`;
+    d.innerHTML=`<div class="scene-icon">${s.icon}</div><div class="scene-name" style="color:${s.color}">${s.name}</div><div class="scene-sub">${s.sub}</div>`;
+    d.onclick=()=>{if(playing)stopAudio();currentSCScene=s;initMeditation();};
+    grid.appendChild(d);
+  });
+  const c=currentSCScene.color;
+  document.getElementById("centerOrb").style.borderColor=c+"22";
+  const ctrl=document.getElementById("meditationControls");
+  ctrl.innerHTML=playerHTML(c,true)+`
+  <button class="btn-primary" id="scPlayBtn" onclick="toggleSCPlay()"
+    style="background:${playing?"linear-gradient(135deg,#2a0000,#440000)":"linear-gradient(135deg,"+c+"55,"+c+"88)"};color:${playing?"#ff4466":"#000"};box-shadow:${playing?"0 0 28px #ff336655":"0 0 28px "+c+"77"};margin-bottom:14px;">
+    ${playing?"⏹　停　止":"▶　セラピー開始"}
+  </button>
+  ${isAdmin?`<div style="font-size:11px;color:#ff3366;background:#330000;border:1px solid #ff336622;border-radius:8px;padding:6px 10px;margin-bottom:10px;">🔒 管理者 S:${currentSCScene.sIdx.map(i=>(S_BASE*JR[i]).toFixed(1)).join("/")}Hz C:${currentSCScene.cIdx.map(i=>(C_BASE*JR[i]).toFixed(1)).join("/")}Hz</div>`:""}
+  <div style="background:#0a0a18;border-radius:14px;padding:14px;border:1px solid ${c}33;">
+    <div style="font-size:14px;color:${c};font-weight:700;margin-bottom:8px;">⬇️ WAVダウンロード</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;">
+      ${[[60,"1分"],[300,"5分"],[600,"10分"],[1800,"30分"]].map(([s,l])=>`<button class="btn-small" onclick="downloadWav([${currentSCScene.sIdx.map(i=>S_BASE*JR[i]).concat(currentSCScene.cIdx.map(i=>C_BASE*JR[i]))}],${s},'schumann')">${l}</button>`).join("")}
+    </div>
+  </div>`;
+}
+
+function toggleSCPlay(){
+  if(playing){stopAudio();initMeditation();return;}
+  currentPlayFn=()=>{
+    startSCScene(currentSCScene);
+    // playing=trueはcreateCtxAndRun内で設定されるため
+    // UIは少し遅延してから更新
+    setTimeout(()=>initMeditation(),50);
+  };
+  currentPlayFn();
+}
+
+// ビートビジュアル
+setInterval(()=>{
+  if(!playing)return;
+  const t=Date.now()/1000;
+  const b7=Math.sin(t*7.83*2*Math.PI)>0.7;
+  const b8=Math.sin(t*8.02*2*Math.PI)>0.7;
+  const c=currentSCScene?.color||"#4dffb4";
+  const r1=document.getElementById("ring1");const r2=document.getElementById("ring2");
+  const r3=document.getElementById("ring3");const r4=document.getElementById("ring4");
+  if(r1){r1.style.borderColor=b7?`${c}66`:`${c}18`;r1.style.boxShadow=b7?`0 0 14px ${c}44`:"";}
+  if(r2){r2.style.borderColor=b7?`${c}55`:`${c}15`;}
+  if(r3){r3.style.borderColor=b8?"#ffe06666":"#ffe06618";r3.style.boxShadow=b8?"0 0 14px #ffe06644":"";}
+  if(r4){r4.style.borderColor=b8?"#ffe06655":"#ffe06615";}
+},80);
+
+// ============================================================
+// チャクラシーン
+// ============================================================
+let currentChakra=CHAKRA_SCENES[0];
+function initChakra(){
+  const grid=document.getElementById("chakraGrid");grid.innerHTML="";
+  const g=document.createElement("div");g.style.cssText="display:grid;grid-template-columns:1fr 1fr;gap:10px;";
+  CHAKRA_SCENES.forEach(s=>{
+    const d=document.createElement("div");
+    d.className="scene-card";d.style.cssText=`background:${s.color}18;border-color:${currentChakra.id===s.id?s.color:s.color+"44"};box-shadow:${currentChakra.id===s.id?`0 0 16px ${s.color}33`:"none"}`;
+    d.innerHTML=`<div class="scene-icon">${s.icon}</div><div class="scene-name" style="color:${s.color}">${s.name}</div><div class="scene-sub">${s.sub}</div>`;
+    d.onclick=()=>{if(playing)stopAudio();currentChakra=s;initChakra();};
+    g.appendChild(d);
+  });
+  grid.appendChild(g);
+  const c=currentChakra.color;
+  const ctrl=document.getElementById("chakraControls");
+  ctrl.innerHTML=playerHTML(c,false)+`
+  <button class="btn-primary" onclick="toggleChakraPlay()"
+    style="background:${playing?"linear-gradient(135deg,#2a0000,#440000)":"linear-gradient(135deg,"+c+"55,"+c+"88)"};color:${playing?"#ff4466":"#000"};box-shadow:${playing?"0 0 28px #ff336655":"0 0 28px "+c+"77"};margin-bottom:14px;">
+    ${playing?"⏹　停　止":"▶　セラピー開始"}
+  </button>
+  ${isAdmin?`<div style="font-size:11px;color:#ff3366;background:#330000;border:1px solid #ff336622;border-radius:8px;padding:6px 10px;margin-bottom:10px;">🔒 ${currentChakra.freqs.join(" / ")}Hz · ISO:${currentChakra.iso}Hz</div>`:""}
+  <div style="background:#0a0a18;border-radius:14px;padding:14px;border:1px solid ${c}33;">
+    <div style="font-size:14px;color:${c};font-weight:700;margin-bottom:8px;">⬇️ WAVダウンロード</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;">
+      ${[[60,"1分"],[300,"5分"],[600,"10分"],[1800,"30分"]].map(([s,l])=>`<button class="btn-small" onclick="downloadWav([${currentChakra.freqs}],${s},'chakra')">${l}</button>`).join("")}
+    </div>
+  </div>`;
+}
+
+function toggleChakraPlay(){
+  if(playing){stopAudio();initChakra();return;}
+  currentPlayFn=()=>{startFreqScene(currentChakra.freqs,currentChakra.iso);setTimeout(()=>initChakra(),50);};
+  currentPlayFn();
+}
+
+// ============================================================
+// 症状別セラピー
+// ============================================================
+let currentSymCat=null, currentSym=null;
+function initSymptom(){
+  const grid=document.getElementById("symptomCatGrid");grid.innerHTML="";
+  SYM_CATS.forEach(cat=>{
+    const d=document.createElement("div");
+    d.className="scene-card";d.style.cssText=`background:${cat.color}18;border-color:${currentSymCat?.id===cat.id?cat.color:cat.color+"44"};cursor:pointer;`;
+    d.innerHTML=`<div style="font-size:28px;margin-bottom:6px;">${cat.icon}</div><div style="font-size:15px;font-weight:800;color:${cat.color};">${cat.name}</div><div style="font-size:11px;color:#888;margin-top:2px;">${SYMPTOMS.filter(s=>s.cat===cat.id).length}種類</div>`;
+    d.onclick=()=>{currentSymCat=cat;renderSymList();};
+    grid.appendChild(d);
+  });
+}
+
+function renderSymList(){
+  const el=document.getElementById("symptomList");el.innerHTML="";
+  if(!currentSymCat)return;
+  const syms=SYMPTOMS.filter(s=>s.cat===currentSymCat.id);
+  syms.forEach(s=>{
+    const d=document.createElement("div");
+    d.style.cssText=`padding:16px 18px;border-radius:16px;margin-bottom:10px;background:${currentSymCat.color}18;border:2px solid ${currentSymCat.color}44;display:flex;align-items:center;gap:14px;cursor:pointer;`;
+    const merNames=(s.mk||[]).map(k=>MERIDIANS[k]?.name||"").filter(Boolean).join("・");
+    d.innerHTML=`
+      <div style="font-size:30px;flex-shrink:0;">${s.icon}</div>
+      <div style="flex:1;">
+        <div style="font-size:17px;font-weight:800;color:${currentSymCat.color};margin-bottom:3px;">${s.name}</div>
+        <div style="font-size:12px;color:#bbb;margin-bottom:4px;">${s.desc}</div>
+        ${merNames?`<div style="font-size:11px;color:#888;">経絡：${merNames}</div>`:""}
+      </div>
+      <div style="font-size:22px;color:${currentSymCat.color};flex-shrink:0;">›</div>`;
+    d.onclick=()=>{currentSym=s;renderSymPlayer();};
+    el.appendChild(d);
+  });
+}
+
+function renderSymPlayer(){
+  if(!currentSym)return;
+  const s=currentSym;
+  const cat=SYM_CATS.find(c=>c.id===s.cat);
+  const c=cat?.color||"#ff88aa";
+  const freqsA=s.sIdx.map(i=>S_BASE*JR[i]);
+  const freqsB=s.cIdx.map(i=>C_BASE*JR[i]);
+  const mFreqsAll=(s.mk||[]).flatMap(k=>mFreqs(k));
+  const allFreqs=[...new Set([...freqsA,...freqsB,...mFreqsAll,...s.rife.filter(f=>f>=20)])];
+  const merNames=(s.mk||[]).map(k=>MERIDIANS[k]?.name||"").filter(Boolean).join("・");
+
+  const el=document.getElementById("symptomPlayer");
+  el.innerHTML=`
+  <div style="padding:16px 20px;border-radius:18px;background:${c}18;border:2px solid ${c}55;margin-bottom:14px;text-align:center;">
+    <div style="font-size:34px;margin-bottom:6px;">${s.icon}</div>
+    <div style="font-size:22px;font-weight:900;color:${c};margin-bottom:4px;">${s.name}</div>
+    <div style="font-size:13px;color:#ccc;margin-bottom:6px;">${s.desc}</div>
+    ${merNames?`<div style="font-size:12px;color:${c};opacity:0.8;">経絡：${merNames}</div>`:""}
+    ${isAdmin?`<div style="font-size:10px;color:#ff3366;margin-top:8px;background:#330000;border-radius:6px;padding:4px 8px;">🔒 ${allFreqs.map(f=>f.toFixed(1)).join(" / ")}Hz</div>`:""}
+  </div>
+  ${playerHTML(c,false)}
+  <button class="btn-primary" onclick="toggleSymPlay()"
+    style="background:${playing?"linear-gradient(135deg,#2a0000,#440000)":"linear-gradient(135deg,"+c+"55,"+c+"88)"};color:${playing?"#ff4466":"#000"};box-shadow:${playing?"0 0 28px #ff336655":"0 0 28px "+c+"77"};margin-bottom:14px;">
+    ${playing?"⏹　停　止":"▶　セラピー開始"}
+  </button>
+  <div style="background:#0a0a18;border-radius:14px;padding:14px;border:1px solid ${c}33;">
+    <div style="font-size:14px;color:${c};font-weight:700;margin-bottom:8px;">⬇️ WAVダウンロード</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;">
+      ${[[60,"1分"],[300,"5分"],[600,"10分"],[1800,"30分"]].map(([t,l])=>`<button class="btn-small" onclick="downloadWav([${allFreqs}],${t},'${s.id}')">${l}</button>`).join("")}
+    </div>
+  </div>`;
+
+  currentPlayFn=()=>{startFreqScene(allFreqs,7.83);setTimeout(()=>renderSymPlayer(),50);};
+  el.scrollIntoView({behavior:"smooth"});
+}
+
+function toggleSymPlay(){
+  if(playing){stopAudio();renderSymPlayer();return;}
+  if(currentPlayFn)currentPlayFn();
+}
+
+function searchSymptoms(){
+  const q=document.getElementById("symptomSearch").value.toLowerCase().trim();
+  const el=document.getElementById("searchResults");el.innerHTML="";
+  if(!q)return;
+  const hits=SYMPTOMS.filter(s=>s.name.includes(q)||s.desc.includes(q)||(s.mk||[]).some(k=>MERIDIANS[k]?.name.includes(q)));
+  if(hits.length===0){el.innerHTML=`<div style="color:#888;font-size:13px;padding:10px;">一致する症状が見つかりません</div>`;return;}
+  hits.forEach(s=>{
+    const cat=SYM_CATS.find(c=>c.id===s.cat);const col=cat?.color||"#ff88aa";
+    const d=document.createElement("div");
+    d.style.cssText=`padding:12px 16px;border-radius:14px;margin-bottom:8px;background:${col}18;border:1.5px solid ${col}44;display:flex;align-items:center;gap:12px;cursor:pointer;`;
+    d.innerHTML=`<div style="font-size:26px;">${s.icon}</div><div style="flex:1;"><div style="font-size:16px;font-weight:800;color:${col};">${s.name}</div><div style="font-size:12px;color:#bbb;">${s.desc}</div></div><div style="font-size:20px;color:${col};">›</div>`;
+    d.onclick=()=>{currentSym=s;currentSymCat=cat;renderSymPlayer();document.getElementById("symptomSearch").value="";el.innerHTML="";};
+    el.appendChild(d);
+  });
+}
+
+// ============================================================
+// 周波数DB
+// ============================================================
+let dbSelected=[], dbCurrentType="all", dlDur=300;
+function initDatabase(){
+  const filters=document.getElementById("dbTypeFilters");filters.innerHTML="";
+  [["all","すべて","#888"],["ライフ","ライフ","#ff6b35"],["経絡","経絡","#44ff88"],["臓器","臓器","#4dffb4"],["ソルフェジオ","ソルフェジオ","#c44dff"]].forEach(([k,l,c])=>{
+    const b=document.createElement("button");
+    b.className="btn-small";b.textContent=l;
+    if(dbCurrentType===k)b.style.cssText=`background:${c}33;border-color:${c};color:${c};`;
+    b.onclick=()=>{dbCurrentType=k;initDatabase();doDbSearch();};
+    filters.appendChild(b);
+  });
+  doDbSearch();
+  renderDbList();
+}
+
+function doDbSearch(){
+  const q=document.getElementById("dbSearch")?.value.toLowerCase().trim()||"";
+  let res=ALL_DB.filter(e=>{
+    const mDB=dbCurrentType==="all"||e.dbType===dbCurrentType;
+    const mQ=!q||e.name.toLowerCase().includes(q)||e.keys.toLowerCase().includes(q);
+    return mDB&&mQ;
+  });
+  document.getElementById("dbResultCount").textContent=res.length+"件";
+  const list=document.getElementById("dbResults");if(!list)return;list.innerHTML="";
+  res.forEach(e=>{
+    const sel=dbSelected.includes(e.id);const ec=e.color||"#888";
+    const d=document.createElement("div");
+    d.style.cssText=`padding:11px 13px;border-radius:11px;margin-bottom:5px;background:${sel?ec+"18":"#0d0d1a"};border:1.5px solid ${sel?ec:"#1a1a2e"};display:flex;justify-content:space-between;align-items:flex-start;gap:8px;cursor:pointer;`;
+    d.innerHTML=`
+      <div style="flex:1;">
+        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:2px;">
+          <span style="font-size:10px;padding:2px 6px;border-radius:6px;background:${ec}22;color:${ec};border:1px solid ${ec}44;">${e.dbType}</span>
+          <span style="font-size:14px;font-weight:700;color:${sel?ec:"#eee"};">${e.name}</span>
+        </div>
+        <div style="font-size:11px;color:${ec};margin-bottom:2px;">🎵 ${e.hz} Hz</div>
+        <div style="font-size:10px;color:#555;">${e.keys.split(",").slice(0,4).join(" · ")}</div>
+      </div>
+      <div style="width:20px;height:20px;border-radius:50%;background:${sel?ec:"transparent"};border:2px solid ${sel?ec:"#333"};display:flex;align-items:center;justify-content:center;font-size:10px;color:${sel?"#000":"transparent"};font-weight:900;flex-shrink:0;">${sel?"✓":""}</div>`;
+    d.onclick=()=>{
+      if(dbSelected.includes(e.id))dbSelected=dbSelected.filter(x=>x!==e.id);else dbSelected.push(e.id);
+      doDbSearch();renderDbSelectedPanel();
+    };
+    list.appendChild(d);
+  });
+}
+
+function renderDbList(){
+  const el=document.getElementById("dbFullList");if(!el)return;el.innerHTML="";
+  [{title:"⚡ ライフ周波数（CAFL）",items:RIFE_DB,color:"#ff6b35"},
+   {title:"⬢ 経絡周波数",items:MERIDIAN_DB,color:"#44ff88"},
+   {title:"🫀 臓器周波数",items:ORGAN_DB,color:"#4dffb4"},
+   {title:"🌀 ソルフェジオ・特殊",items:SOLFEGGIO_DB,color:"#c44dff"}].forEach(sec=>{
+    const div=document.createElement("div");div.style.marginBottom="20px";
+    div.innerHTML=`<div style="font-size:14px;font-weight:800;color:${sec.color};background:${sec.color}18;border:1px solid ${sec.color}33;border-radius:10px;padding:7px 12px;margin-bottom:8px;">${sec.title}（${sec.items.length}件）</div>`;
+    sec.items.forEach(e=>{
+      const sel=dbSelected.includes(e.id);
+      const row=document.createElement("div");
+      row.style.cssText=`padding:9px 11px;border-radius:9px;margin-bottom:4px;background:#0d0d1a;border-left:3px solid ${sec.color}44;display:flex;justify-content:space-between;align-items:flex-start;gap:8px;`;
+      row.innerHTML=`
+        <div style="flex:1;">
+          <div style="font-size:13px;font-weight:700;color:${sec.color};margin-bottom:1px;">${e.name}</div>
+          <div style="font-size:11px;color:#4dffb4;">🎵 ${e.hz} Hz</div>
+          <div style="font-size:10px;color:#555;">${e.keys}</div>
+        </div>
+        <button class="btn-small ${sel?"active-btn":""}" onclick="toggleDbSel('${e.id}')" style="${sel?`background:${sec.color}33;border-color:${sec.color};color:${sec.color}`:""}">
+          ${sel?"✓":"選択"}
+        </button>`;
+      div.appendChild(row);
+    });
+    el.appendChild(div);
+  });
+}
+
+function toggleDbSel(id){
+  if(dbSelected.includes(id))dbSelected=dbSelected.filter(x=>x!==id);else dbSelected.push(id);
+  renderDbList();renderDbSelectedPanel();
+}
+
+function renderDbSelectedPanel(){
+  const el=document.getElementById("dbSelectedPanel");
+  if(dbSelected.length===0){el.innerHTML="";return;}
+  const selE=ALL_DB.filter(e=>dbSelected.includes(e.id));
+  const allHz=[...new Set(selE.flatMap(e=>e.hz.split(",").map(f=>parseFloat(f.trim())).filter(f=>!isNaN(f))))];
+  el.innerHTML=`
+  <div style="padding:16px;border-radius:18px;background:#0a0a18;border:2px solid #4dffb444;">
+    <div style="font-size:14px;color:#4dffb4;font-weight:700;margin-bottom:10px;">✓ 選択中 ${dbSelected.length}件</div>
+    <div style="margin-bottom:10px;">${selE.map(e=>`<span class="tag" onclick="toggleDbSel('${e.id}')" style="color:#4dffb4;">${e.name} ×</span>`).join("")}</div>
+    <div style="padding:8px 10px;border-radius:9px;background:#0d0d20;border:1px solid #1a1a3a;margin-bottom:10px;">
+      <div style="font-size:11px;color:#888;margin-bottom:4px;">出力周波数（Hz）</div>
+      <div>${allHz.sort((a,b)=>a-b).map(f=>`<span class="hz-chip">${f}</span>`).join("")}</div>
+    </div>
+    ${playerHTML("#4dffb4",false)}
+    <button class="btn-primary" onclick="toggleDbPlay()"
+      style="background:${playing?"linear-gradient(135deg,#2a0000,#440000)":"linear-gradient(135deg,rgba(77,255,180,0.33),rgba(77,255,180,0.53))"};color:${playing?"#ff4466":"#000"};box-shadow:${playing?"0 0 28px rgba(255,51,102,0.33)":"0 0 28px rgba(77,255,180,0.47)"};margin-bottom:14px;">
+      ${playing?"⏹　停　止":"▶　セラピー開始"}
+    </button>
+    <div style="background:#0d0d1a;border-radius:12px;padding:12px;border:1px solid #4dffb433;">
+      <div style="font-size:13px;color:#4dffb4;font-weight:700;margin-bottom:8px;">⬇️ WAVダウンロード</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;">
+        ${[[60,"1分"],[300,"5分"],[600,"10分"],[1800,"30分"]].map(([s,l])=>`<button class="btn-small" onclick="downloadWav([${allHz}],${s},'db')">${l}</button>`).join("")}
+      </div>
+    </div>
+  </div>`;
+  currentPlayFn=()=>{startFreqScene(allHz,7.83);setTimeout(()=>renderDbSelectedPanel(),50);};
+}
+
+function toggleDbPlay(){
+  if(playing){stopAudio();renderDbSelectedPanel();return;}
+  if(currentPlayFn)currentPlayFn();
+}
+
+function switchDbTab(t){
+  document.getElementById("dbTab1").style.cssText=`flex:1;padding:8px;border-radius:9px;font-size:13px;${t==="search"?"background:#1a2a4a;border:1px solid #00d4ff33;color:#00d4ff;font-weight:700;":"background:transparent;border:1px solid transparent;color:#4a6080;"}`;
+  document.getElementById("dbTab2").style.cssText=`flex:1;padding:8px;border-radius:9px;font-size:13px;${t==="list"?"background:#1a2a4a;border:1px solid #00d4ff33;color:#00d4ff;font-weight:700;":"background:transparent;border:1px solid transparent;color:#4a6080;"}`;
+  document.getElementById("dbSearchPane").style.display=t==="search"?"block":"none";
+  document.getElementById("dbListPane").style.display=t==="list"?"block":"none";
+  if(t==="list")renderDbList();
+}
+
+// ============================================================
+// ページ切り替え
+// ============================================================
+function showPage(id){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.getElementById("page-"+id).classList.add("active");
+  document.querySelectorAll(".nav-btn").forEach((b,i)=>{
+    b.classList.toggle("active",["home","meditation","chakra","symptom","database","gamma","shigo","shindan"][i]===id);
+  });
+  if(id==="meditation")initMeditation();
+  else if(id==="chakra")initChakra();
+  else if(id==="symptom")initSymptom();
+  else if(id==="database")initDatabase();
+  else if(id==="gamma")initGamma();
+  else if(id==="shigo")initShigo();
+  else if(id==="shindan")initShindan();
+}
+
+// ============================================================
+// 40Hz ガンマ波セラピー
+// ============================================================
+let gammaLayers={base:true, binaural:true, rife:true, iso:true};
+
+function initGamma(){
+  // レイヤートグルUI
+  const layerDefs=[
+    {key:"base",    label:"40Hz 純正律ベース音",  sub:"40/50/60/80Hz · 逆位相防止デチューン",icon:"🔵"},
+    {key:"binaural",label:"バイノーラルビート",   sub:"L:200Hz R:240Hz → 脳内で40Hz生成",  icon:"🎧"},
+    {key:"rife",    label:"ライフ/ソルフェジオ",  sub:"528/728/784/880Hz · 音量控えめ",     icon:"⚡"},
+    {key:"iso",     label:"アイソクロニック",     sub:"40Hz脈動 + 7.83Hz + 8.02Hz",        icon:"🌀"},
+  ];
+  const el=document.getElementById("gammaLayers");
+  el.innerHTML=layerDefs.map(d=>`
+    <div class="repeat-toggle" style="margin-bottom:8px;border-color:#00d4ff22;background:#001a2a;"
+         onclick="toggleGammaLayer('${d.key}',this)">
+      <span style="font-size:18px;">${d.icon}</span>
+      <div style="flex:1;">
+        <div style="font-size:13px;font-weight:700;color:#00d4ff;">${d.label}</div>
+        <div style="font-size:10px;color:#666;margin-top:1px;">${d.sub}</div>
+      </div>
+      <div class="toggle-pill ${gammaLayers[d.key]?'on':''}" style="${gammaLayers[d.key]?'background:#00d4ff':''}">
+        <div class="toggle-dot"></div>
+      </div>
+    </div>`).join("");
+
+  // プレイヤーUI
+  const c="#00d4ff";
+  const ctrl=document.getElementById("gammaControls");
+  ctrl.innerHTML=playerHTML(c,false)+`
+  <button class="btn-primary" onclick="toggleGammaPlay()"
+    style="background:${playing?"linear-gradient(135deg,#2a0000,#440000)":"linear-gradient(135deg,rgba(0,212,255,0.3),rgba(0,212,255,0.5))"};color:${playing?"#ff4466":"#000"};box-shadow:${playing?"0 0 28px #ff336655":"0 0 28px rgba(0,212,255,0.5)"};margin-bottom:14px;">
+    ${playing?"⏹　停　止":"▶　セラピー開始"}
+  </button>
+  <div style="background:#0a0a18;border-radius:14px;padding:14px;border:1px solid #00d4ff33;">
+    <div style="font-size:14px;color:#00d4ff;font-weight:700;margin-bottom:8px;">⬇️ WAVダウンロード</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;">
+      ${[[60,"1分"],[300,"5分"],[600,"10分"],[1800,"30分"]].map(([s,l])=>`<button class="btn-small" onclick="downloadWav([40,50,60,80,200,240,528,728,784,880],${s},'gamma')">${l}</button>`).join("")}
+    </div>
+  </div>`;
+}
+
+function toggleGammaLayer(key, el){
+  gammaLayers[key]=!gammaLayers[key];
+  const pill=el.querySelector(".toggle-pill");
+  pill.classList.toggle("on",gammaLayers[key]);
+  pill.style.background=gammaLayers[key]?"#00d4ff":"";
+  // 再生中なら再起動
+  if(playing){stopAudio();startGammaScene();setTimeout(()=>initGamma(),50);}
+}
+
+function startGammaScene(){
+  const JI=[1, 5/4, 3/2, 2];
+  createCtxAndRun(master=>{
+
+    // Layer 1：40Hz 純正律ベース音（逆位相防止デチューン付き）
+    if(gammaLayers.base){
+      const baseFreqs=[40,50,60,80];
+      baseFreqs.forEach((f,fi)=>{
+        JI.forEach((ratio,ri)=>{
+          const x=f*ratio;
+          if(x>18000)return;
+          const detune=1+(fi*0.00031+ri*0.00019+fi*ri*0.0001);
+          const o=audioCtx.createOscillator();
+          o.type="sine";o.frequency.value=x*detune;
+          const g=audioCtx.createGain();
+          g.gain.value=0.45/baseFreqs.length/(ri+1);
+          o.connect(g);g.connect(master);
+          o.start(audioCtx.currentTime+fi*0.004+ri*0.003);
+          audioOscs.push(o);
+        });
+      });
+    }
+
+    // Layer 2：バイノーラルビート（L:200Hz / R:240Hz → 差分40Hz）
+    if(gammaLayers.binaural){
+      [[200,-1],[240,1]].forEach(([freq,pan])=>{
+        const o=audioCtx.createOscillator();
+        o.type="sine";o.frequency.value=freq;
+        const g=audioCtx.createGain();g.gain.value=0.35;
+        const p=audioCtx.createStereoPanner?audioCtx.createStereoPanner():null;
+        o.connect(g);
+        if(p){p.pan.value=pan;g.connect(p);p.connect(master);}
+        else{g.connect(master);}
+        o.start();audioOscs.push(o);
+      });
+    }
+
+    // Layer 3：ライフ/ソルフェジオ高域（音量控えめ）
+    if(gammaLayers.rife){
+      [528,728,784,880].forEach((f,fi)=>{
+        const o=audioCtx.createOscillator();
+        o.type="sine";o.frequency.value=f*(1+fi*0.00028);
+        const g=audioCtx.createGain();g.gain.value=0.15;
+        o.connect(g);g.connect(master);
+        o.start(audioCtx.currentTime+fi*0.005);
+        audioOscs.push(o);
+      });
+    }
+
+    // Layer 4：アイソクロニック
+    if(gammaLayers.iso){
+      addIsochronic(S_BASE,40,0.55,master);   // 40Hzガンマ
+      addIsochronic(S_BASE,7.83,0.45,master); // シューマン
+      addIsochronic(C_BASE,8.02,0.45,master); // シトクロムC
+    }
+  });
+}
+
+function toggleGammaPlay(){
+  if(playing){stopAudio();initGamma();return;}
+  currentPlayFn=()=>{startGammaScene();setTimeout(()=>initGamma(),50);};
+  currentPlayFn();
+}
+
+// 初期化
+initMeditation();
+initSymptom();
+
+// ============================================================
+// 子午流注（しごるちゅう）
+// ============================================================
+const SHIGO_DATA=[
+  {
+    hour:23, endHour:1, idx:0,
+    name:"胆経", kanji:"子の刻", en:"GALLBLADDER",
+    icon:"🌙", color:"#44ff88",
+    freq:506.8, rife:[727,787,880,20],
+    sIdx:[0,2,4,6], cIdx:[0,1,4,5],
+    mk:["gallbldr","liver"],
+    desc:"胆汁の新陳代謝が最も盛んな時間。成長ホルモンが多く分泌されます。",
+    advice:[
+      {icon:"😴", label:"基本行動",   text:"深い睡眠・就寝中"},
+      {icon:"🧘", label:"ヨガ・運動", text:"就寝前の軽いストレッチ・仰向けリラックスポーズ"},
+      {icon:"🍵", label:"食事",       text:"就寝2時間前には食事を終える"},
+      {icon:"⚠️", label:"避けること", text:"夜更かし・過度の飲酒・激しい感情"},
+      {icon:"💡", label:"養生ポイント",text:"胆は決断力と関わる。この時間の睡眠が翌日の判断力を高める"},
+    ]
+  },
+  {
+    hour:1, endHour:3, idx:1,
+    name:"肝経", kanji:"丑の刻", en:"LIVER",
+    icon:"🌑", color:"#88ff44",
+    freq:1032, rife:[727,787,880,317,522],
+    sIdx:[0,2,4,6], cIdx:[0,3,4,7],
+    mk:["liver","gallbldr"],
+    desc:"肝臓が排毒・解毒・老廃物の処理を行い浄化された血液を生成するピーク。肝臓の再生能力が最大限に発揮される時間帯。",
+    advice:[
+      {icon:"😴", label:"基本行動",   text:"深い熟睡（最重要）"},
+      {icon:"🧘", label:"ヨガ・運動", text:"完全休息・就寝"},
+      {icon:"🚫", label:"食事",       text:"食事不可（消化が肝臓の解毒を妨げる）"},
+      {icon:"⚠️", label:"避けること", text:"飲酒・夜更かし・強いストレス・怒り"},
+      {icon:"💡", label:"養生ポイント",text:"肝臓の漢方薬は夜に服用すると効果が高まる。女性は生理不順予防にも重要な時間"},
+    ]
+  },
+  {
+    hour:3, endHour:5, idx:2,
+    name:"肺経", kanji:"寅の刻", en:"LUNG",
+    icon:"🌅", color:"#aaddff",
+    freq:2287, rife:[727,787,880,1234,465],
+    sIdx:[0,2,4,6], cIdx:[0,1,4,5],
+    mk:["lung","lintst"],
+    desc:"一日で最初に活動するのは「肺」。目覚めに向けて全身に気と血を送り込みます。",
+    advice:[
+      {icon:"🌬️", label:"基本行動",   text:"浅い眠りから目覚めへの移行"},
+      {icon:"🧘", label:"ヨガ・運動", text:"深呼吸・太極拳・ヨガ（起きている場合）"},
+      {icon:"☕", label:"食事",       text:"起床後すぐに白湯を一杯"},
+      {icon:"⚠️", label:"避けること", text:"冷たい空気の急な吸入・喫煙"},
+      {icon:"💡", label:"養生ポイント",text:"この時間帯にヨガを行う流派もある。肺が弱いと咳・喘息・アトピーが出やすい"},
+    ]
+  },
+  {
+    hour:5, endHour:7, idx:3,
+    name:"大腸経", kanji:"卯の刻", en:"LARGE INTESTINE",
+    icon:"🌄", color:"#a8ff78",
+    freq:4230, rife:[880,787,727,444,440],
+    sIdx:[0,2,4,5], cIdx:[0,3,4,6],
+    mk:["lintst","lung"],
+    desc:"「大腸」が活発に動き出す時間。朝の自然な排便リズムはこの時間帯に起こります。",
+    advice:[
+      {icon:"🚽", label:"基本行動",   text:"排便・起床・洗顔"},
+      {icon:"🚶", label:"ヨガ・運動", text:"ウォーキング・腸活ヨガ（ガス抜きのポーズ・ひざ抱えポーズ）"},
+      {icon:"💧", label:"食事",       text:"コップ1杯の常温水または白湯（腸を目覚めさせる）"},
+      {icon:"⚠️", label:"避けること", text:"排便を我慢する・冷たい飲み物・朝食を抜く"},
+      {icon:"💡", label:"養生ポイント",text:"この時間に排便できると大腸の排毒作用で肺・皮膚が清浄に保たれる"},
+    ]
+  },
+  {
+    hour:7, endHour:9, idx:4,
+    name:"胃経", kanji:"辰の刻", en:"STOMACH",
+    icon:"☀️", color:"#ffe066",
+    freq:126.9, rife:[880,727,465,250,125],
+    sIdx:[0,2,4,6], cIdx:[0,1,4,5],
+    mk:["stomach","spleen"],
+    desc:"大腸から胃へ気血が流れ「胃」の働きが活発に。この時間帯に食事を摂ると消化がスムーズです。",
+    advice:[
+      {icon:"🍳", label:"基本行動",   text:"朝食・一日のスタート"},
+      {icon:"🚶", label:"ヨガ・運動", text:"食後の軽いウォーキング・胃腸を刺激するツイストポーズ"},
+      {icon:"🥣", label:"食事",       text:"1日で最も重要な食事の時間。温かく消化の良いものを"},
+      {icon:"⚠️", label:"避けること", text:"朝食を抜く・冷たいもの・食べ過ぎ・早食い"},
+      {icon:"💡", label:"養生ポイント",text:"空腹だと胃潰瘍・十二指腸潰瘍になりやすい。1日2食の人もこの時間に食べること"},
+    ]
+  },
+  {
+    hour:9, endHour:11, idx:5,
+    name:"脾経", kanji:"巳の刻", en:"SPLEEN",
+    icon:"🌞", color:"#ffaa44",
+    freq:264.9, rife:[727,787,880,465,128],
+    sIdx:[0,1,4,7], cIdx:[0,2,4,7],
+    mk:["spleen","stomach"],
+    desc:"脾の活動が活発になり心身ともに充実。仕事・勉強・運動に最も適した時間帯です。",
+    advice:[
+      {icon:"💼", label:"基本行動",   text:"集中作業・仕事・勉強"},
+      {icon:"🏃", label:"ヨガ・運動", text:"ダイエット運動の最適時間。有酸素運動・脾経を刺激するバランスポーズ"},
+      {icon:"💧", label:"食事",       text:"水分補給（冷たいものは避ける）"},
+      {icon:"⚠️", label:"避けること", text:"冷たい飲食物・間食・長時間の座り仕事"},
+      {icon:"💡", label:"養生ポイント",text:"集中力・記憶力のピーク。重要な会議・試験・クリエイティブ作業に最適"},
+    ]
+  },
+  {
+    hour:11, endHour:13, idx:6,
+    name:"心経", kanji:"午の刻", en:"HEART",
+    icon:"🌤️", color:"#ff4488",
+    freq:289, rife:[880,787,727,250,125],
+    sIdx:[0,2,4,5], cIdx:[0,3,4,6],
+    mk:["heart","pericard"],
+    desc:"心臓のポンプ機能と精神活動が高まる時間帯。血液が全身に充実し精神的にも安定しやすい。",
+    advice:[
+      {icon:"🍱", label:"基本行動",   text:"昼食・小休憩・軽い昼寝"},
+      {icon:"🧘", label:"ヨガ・運動", text:"激しい運動は避ける。昼食後15〜30分の仮眠が最強の養生"},
+      {icon:"🥗", label:"食事",       text:"昼食（腹8分目。苦味のある食材が心に良い）"},
+      {icon:"⚠️", label:"避けること", text:"過剰な塩分・昼の過度の運動・正午の激しい感情"},
+      {icon:"💡", label:"養生ポイント",text:"正午は血液粘度が高くなり心臓に負担がかかる。15〜30分の昼寝が午後の活力源"},
+    ]
+  },
+  {
+    hour:13, endHour:15, idx:7,
+    name:"小腸経", kanji:"未の刻", en:"SMALL INTESTINE",
+    icon:"☁️", color:"#ff6644",
+    freq:316, rife:[880,787,727,281,465],
+    sIdx:[0,2,4,6], cIdx:[0,1,4,5],
+    mk:["sintst","spleen"],
+    desc:"吸収された栄養分の分別機能が高まる時間帯。小腸が栄養素を各臓器に送り届けます。",
+    advice:[
+      {icon:"☕", label:"基本行動",   text:"休憩・軽作業・水分補給"},
+      {icon:"🚶", label:"ヨガ・運動", text:"軽いストレッチ・散歩程度（激しい運動は避ける）"},
+      {icon:"💧", label:"食事",       text:"水分を積極的に（栄養分をドロドロにさせない）"},
+      {icon:"⚠️", label:"避けること", text:"激しい運動（栄養吸収を妨げる）・冷たい飲み物"},
+      {icon:"💡", label:"養生ポイント",text:"太りたい人はこの時間をゆったり過ごすことが大切"},
+    ]
+  },
+  {
+    hour:15, endHour:17, idx:8,
+    name:"膀胱経", kanji:"申の刻", en:"BLADDER",
+    icon:"🌆", color:"#44aaff",
+    freq:343.8, rife:[254,660,728,784,880],
+    sIdx:[0,2,4,7], cIdx:[0,1,4,5],
+    mk:["bladder","kidney"],
+    desc:"膀胱が老廃物を含む尿を処理するデトックスタイム。腎との表裏関係でデトックスが進みます。",
+    advice:[
+      {icon:"💼", label:"基本行動",   text:"仕事の後半・アクティブタイム"},
+      {icon:"🏃", label:"ヨガ・運動", text:"軽い有酸素運動・膀胱経ストレッチ（背面・脚裏伸ばし・前屈）"},
+      {icon:"💧", label:"食事",       text:"水分を積極的に摂る（デトックス促進）"},
+      {icon:"⚠️", label:"避けること", text:"水分不足・トイレを我慢する・塩分過多"},
+      {icon:"💡", label:"養生ポイント",text:"体が温まりやすく運動効果が出やすい時間帯。背中・腰のストレッチが特に効果的"},
+    ]
+  },
+  {
+    hour:17, endHour:19, idx:9,
+    name:"腎経", kanji:"酉の刻", en:"KIDNEY",
+    icon:"🌇", color:"#4466ff",
+    freq:383.7, rife:[317,527,787,880,150],
+    sIdx:[0,3,4,7], cIdx:[0,2,4,5],
+    mk:["kidney","bladder"],
+    desc:"腎は「生命力の根本」を司る。腎気を補う最適な時間帯です。",
+    advice:[
+      {icon:"🌙", label:"基本行動",   text:"夕食準備・一日の締めくくり"},
+      {icon:"🧘", label:"ヨガ・運動", text:"腎を温めるポーズ（橋のポーズ・子どものポーズ・合蹠のポーズ）"},
+      {icon:"🍱", label:"食事",       text:"夕食（黒い食材：黒豆・黒ごま・わかめ・ひじきが腎に良い）"},
+      {icon:"⚠️", label:"避けること", text:"過度の塩分・冷え・恐怖心・過度の性行為"},
+      {icon:"💡", label:"養生ポイント",text:"腎は「恐れ」の感情と関連。この時間のリラクゼーションが不安解消に。腰を温めることが重要"},
+    ]
+  },
+  {
+    hour:19, endHour:21, idx:10,
+    name:"心包経", kanji:"戌の刻", en:"PERICARDIUM",
+    icon:"🌃", color:"#cc44ff",
+    freq:477, rife:[728,784,880,64,465],
+    sIdx:[0,2,4,5], cIdx:[0,3,4,6],
+    mk:["pericard","heart"],
+    desc:"心包の機能が更新する時間帯。喜怒哀楽の感情を司ります。感情が高ぶらないようリラックスして過ごしたい。",
+    advice:[
+      {icon:"👨‍👩‍👧", label:"基本行動",   text:"家族との時間・リラクゼーション"},
+      {icon:"🧘", label:"ヨガ・運動", text:"陰ヨガ・リストラティブヨガ・瞑想・ゆったりした呼吸法"},
+      {icon:"🍵", label:"食事",       text:"軽めに（就寝2時間前には終える）"},
+      {icon:"⚠️", label:"避けること", text:"激しい議論・興奮するコンテンツ・スマホの長時間使用"},
+      {icon:"💡", label:"養生ポイント",text:"好きな音楽・入浴・アロマ・パートナーとの会話が心包を癒す"},
+    ]
+  },
+  {
+    hour:21, endHour:23, idx:11,
+    name:"三焦経", kanji:"亥の刻", en:"TRIPLE WARMER",
+    icon:"🌙", color:"#ff8844",
+    freq:496, rife:[496,728,784,880,465],
+    sIdx:[0,2,4,6], cIdx:[0,1,4,5],
+    mk:["triple","pericard"],
+    desc:"気や水（体液）の流れを調整する三焦の時間。就寝に向けて内臓の働きを鎮めていきます。",
+    advice:[
+      {icon:"🛁", label:"基本行動",   text:"就寝準備・入浴"},
+      {icon:"🧘", label:"ヨガ・運動", text:"シャバアーサナ（屍のポーズ）・腹式呼吸・4-7-8呼吸法"},
+      {icon:"🚫", label:"食事",       text:"飲食は控える（白湯のみOK）"},
+      {icon:"⚠️", label:"避けること", text:"強い光・激しい活動・カフェイン・スマホのブルーライト"},
+      {icon:"💡", label:"養生ポイント",text:"ゆったりと過ごすと全身の百脈を十分に休ませ養うことができる"},
+    ]
+  },
+];
+
+// 現在時刻から対応する子午流注データを返す
+function getShigoNow(){
+  const h=new Date().getHours();
+  return SHIGO_DATA.find(d=>{
+    if(d.hour<d.endHour) return h>=d.hour && h<d.endHour;
+    return h>=d.hour || h<d.endHour; // 23〜1時など日またぎ
+  })||SHIGO_DATA[0];
+}
+
+// 経絡周波数+ライフ+シューマン+シトクロムCで再生
+function startShigoScene(d){
+  const JI=[1,5/4,3/2,2];
+  const playable=[d.freq,...d.rife].filter(f=>f>=20&&f<=18000);
+  createCtxAndRun(master=>{
+    // 経絡周波数を純正律4倍音展開（逆位相防止デチューン付き）
+    playable.forEach((f,fi)=>{
+      JI.forEach((ratio,ri)=>{
+        const x=f*ratio; if(x>18000)return;
+        const detune=1+(fi*0.00031+ri*0.00019+fi*ri*0.0001);
+        const o=audioCtx.createOscillator();o.type="sine";
+        o.frequency.value=x*detune;
+        const g=audioCtx.createGain();
+        g.gain.value=0.5/Math.max(playable.length,1)/(ri+1);
+        o.connect(g);g.connect(master);
+        o.start(audioCtx.currentTime+fi*0.004+ri*0.003);
+        audioOscs.push(o);
+      });
+    });
+    // シューマン + シトクロムC アイソクロニック
+    addIsochronic(S_BASE,7.83,0.5,master);
+    addIsochronic(C_BASE,8.02,0.5,master);
+  });
+}
+
+let shigoTimerInterval=null;
+
+function initShigo(){
+  // 1分ごとに自動更新
+  if(shigoTimerInterval)clearInterval(shigoTimerInterval);
+  shigoTimerInterval=setInterval(()=>{
+    if(document.getElementById("page-shigo").classList.contains("active")){
+      renderShigoNow();
+    }
+  },60000);
+  renderShigoNow();
+  renderShigoSchedule();
+}
+
+function renderShigoNow(){
+  const d=getShigoNow();
+  const now=new Date();
+  const timeStr=now.getHours().toString().padStart(2,"0")+":"+now.getMinutes().toString().padStart(2,"0");
+  const c=d.color;
+
+  // 現在時刻カード
+  document.getElementById("shigoNowCard").innerHTML=`
+    <div style="background:${c}18;border:2px solid ${c}55;border-radius:18px;padding:20px;">
+      <div style="font-size:36px;margin-bottom:6px;">${d.icon}</div>
+      <div style="font-size:28px;font-weight:900;color:${c};">${timeStr}</div>
+      <div style="font-size:11px;color:#888;margin:2px 0 8px;">${d.kanji} · ${d.en}</div>
+      <div style="font-size:22px;font-weight:900;color:${c};margin-bottom:6px;">${d.name}の時間帯</div>
+      <div style="font-size:13px;color:#ccc;line-height:1.7;margin-bottom:10px;">${d.desc}</div>
+      ${isAdmin?`<div style="font-size:11px;color:#ff3366;background:#330000;border-radius:8px;padding:5px 10px;margin-top:4px;">🔒 経絡: ${d.freq}Hz · ライフ: ${d.rife.join(", ")}Hz</div>`:""}
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;">
+        <div style="padding:4px 12px;border-radius:12px;background:${c}22;border:1px solid ${c}44;font-size:11px;color:${c};">⏰ ${d.hour}:00 〜 ${d.endHour}:00</div>
+      </div>
+    </div>`;
+
+  // 養生アドバイスカード
+  const adviceHTML=d.advice.map(a=>`
+    <div style="display:flex;gap:10px;padding:10px 12px;border-bottom:1px solid #1a1a2e;">
+      <span style="font-size:18px;flex-shrink:0;">${a.icon}</span>
+      <div>
+        <div style="font-size:11px;color:${c};font-weight:700;margin-bottom:2px;">${a.label}</div>
+        <div style="font-size:13px;color:#ddd;line-height:1.6;">${a.text}</div>
+      </div>
+    </div>`).join("");
+
+  // おすすめプログラム（経絡に関連する症状）
+  const related=SYMPTOMS.filter(s=>s.mk&&s.mk.some(k=>d.mk.includes(k))).slice(0,3);
+  const recHTML=related.length?`
+    <div style="font-size:14px;font-weight:800;color:${c};margin-bottom:8px;">✨ 今おすすめのセラピー</div>
+    ${related.map(s=>{
+      const cat=SYM_CATS.find(c2=>c2.id===s.cat);
+      return `<div onclick="showPage('symptom');setTimeout(()=>{currentSymCat=SYM_CATS.find(c=>c.id==='${s.cat}');renderSymList();currentSym=SYMPTOMS.find(x=>x.id==='${s.id}');renderSymPlayer();},100);"
+        style="display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:14px;background:${cat?.color||"#4dffb4"}18;border:1.5px solid ${cat?.color||"#4dffb4"}44;margin-bottom:8px;cursor:pointer;">
+        <span style="font-size:24px;">${s.icon}</span>
+        <div style="flex:1;">
+          <div style="font-size:14px;font-weight:800;color:${cat?.color||"#4dffb4"};">${s.name}</div>
+          <div style="font-size:11px;color:#888;">${s.desc.split('\n')[0]}</div>
+        </div>
+        <span style="color:${cat?.color||"#4dffb4"};">›</span>
+      </div>`;
+    }).join("")}`:
+    `<div style="font-size:13px;color:#666;padding:10px;">関連プログラムを読み込み中...</div>`;
+
+  document.getElementById("shigoRecommend").innerHTML=recHTML;
+
+  // プレイヤー
+  document.getElementById("shigoPlayer").innerHTML=`
+    <div style="background:#0a0a18;border-radius:16px;padding:16px;border:2px solid ${c}33;margin-bottom:12px;">
+      <div style="font-size:14px;font-weight:800;color:${c};margin-bottom:12px;">🎵 ${d.name}セラピーを再生</div>
+      ${playerHTML(c,false)}
+      <button class="btn-primary" onclick="toggleShigoPlay()"
+        style="background:${playing?"linear-gradient(135deg,#2a0000,#440000)":"linear-gradient(135deg,"+c+"44,"+c+"66)"};color:${playing?"#ff4466":"#000"};box-shadow:${playing?"0 0 28px #ff336655":"0 0 28px "+c+"66"};">
+        ${playing?"⏹　停　止":"▶　セラピー開始"}
+      </button>
+    </div>
+    <div style="background:#0a0a18;border-radius:14px;padding:14px;border:1px solid ${c}33;margin-bottom:12px;">
+      <div style="font-size:14px;font-weight:800;color:#ddd;margin-bottom:10px;">🌿 養生アドバイス</div>
+      ${adviceHTML}
+    </div>`;
+}
+
+function renderShigoSchedule(){
+  const now=new Date().getHours();
+  const el=document.getElementById("shigoSchedule");
+  el.innerHTML=SHIGO_DATA.map(d=>{
+    const isNow=(d.hour<=now&&now<d.endHour)||(d.hour>d.endHour&&(now>=d.hour||now<d.endHour));
+    const c=d.color;
+    return `
+      <div onclick="renderShigoDetail('${d.kanji}')"
+        style="display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:14px;margin-bottom:6px;
+        background:${isNow?c+"22":"#0d0d1a"};border:${isNow?`2px solid ${c}`:"1px solid #1a1a2e"};cursor:pointer;
+        ${isNow?"box-shadow:0 0 16px "+c+"44":""}" >
+        <span style="font-size:20px;">${d.icon}</span>
+        <div style="width:70px;flex-shrink:0;">
+          <div style="font-size:12px;font-weight:800;color:${isNow?c:"#aaa"};">${d.hour}:00〜${d.endHour}:00</div>
+          <div style="font-size:10px;color:#666;">${d.kanji}</div>
+        </div>
+        <div style="flex:1;">
+          <div style="font-size:14px;font-weight:800;color:${isNow?c:"#ccc"};">${d.name}</div>
+          ${isAdmin?`<div style="font-size:10px;color:#ff3366;">${d.freq}Hz</div>`:""}
+        </div>
+        ${isNow?`<span style="font-size:11px;padding:3px 8px;border-radius:8px;background:${c};color:#000;font-weight:900;">NOW</span>`:""}
+      </div>`;
+  }).join("");
+}
+
+function renderShigoDetail(kanji){
+  const d=SHIGO_DATA.find(x=>x.kanji===kanji);
+  if(!d)return;
+  // 該当経絡のカードにスクロール
+  document.getElementById("shigoNowCard").scrollIntoView({behavior:"smooth"});
+}
+
+function toggleShigoPlay(){
+  if(playing){stopAudio();renderShigoNow();return;}
+  const d=getShigoNow();
+  currentPlayFn=()=>{startShigoScene(d);setTimeout(()=>renderShigoNow(),50);};
+  currentPlayFn();
+}
+
+
+// ============================================================
+// 中医学診断システム（問診・舌診・脈診・体質判定・カルテ）
+// ============================================================
+const KENPO_TYPES={
+  qiXu:{name:"気虚",icon:"🌬️",color:"#ffe066",
+    desc:"エネルギーが不足している状態。疲れやすく、免疫力が低下しています。声が小さく、風邪を引きやすいのも特徴です。",
+    care:"休息を多く取り、消化の良い温かいものを食べましょう。山芋・なつめ・鶏肉が気を補います。",
+    symCats:["immune","energy","digest"],symIds:["immune","gut"],mk:["spleen","lung","kidney"]},
+  xueXu:{name:"血虚",icon:"🩸",color:"#ff88aa",
+    desc:"血が不足している状態。顔色が悪く、めまい・不眠・爪割れが起こりやすいです。",
+    care:"黒ごま・黒豆・ほうれん草・レバーなど血を補う食材を積極的に摂りましょう。",
+    symCats:["neuro","energy","beauty"],symIds:["sleep","hair_loss","white_hair"],mk:["liver","heart","spleen"]},
+  yinXu:{name:"陰虚",icon:"🔥",color:"#ff6644",
+    desc:"体の潤いが不足している状態。ほてり・口の渇き・乾燥・不眠が特徴です。",
+    care:"百合根・山芋・豆腐など潤いを補う食材を。辛い物・乾燥を避け、十分な睡眠を。",
+    symCats:["neuro","energy","beauty"],symIds:["sleep","stress"],mk:["kidney","liver","heart"]},
+  yangXu:{name:"陽虚",icon:"❄️",color:"#44aaff",
+    desc:"体を温める力が不足している状態。冷え性・疲労感・むくみ・下痢しやすいのが特徴。",
+    care:"生姜・シナモン・羊肉など体を温める食材を。お風呂や運動で体を温めましょう。",
+    symCats:["vessel","energy","urinary"],symIds:["kidney","autonomic"],mk:["kidney","spleen","bladder"]},
+  qiZhi:{name:"気滞",icon:"🌀",color:"#c44dff",
+    desc:"気の流れが滞っている状態。ストレスやイライラ・ため息・胸のつかえが特徴です。",
+    care:"深呼吸・軽い運動・好きな香りでリラックス。柑橘系・バラが気を巡らせます。",
+    symCats:["neuro","inflame","digest"],symIds:["stress","headache","stomach"],mk:["liver","gallbldr","pericard"]},
+  xueYu:{name:"血瘀",icon:"🫀",color:"#ff4466",
+    desc:"血の流れが滞っている状態。慢性的な痛み・シミ・冷えと熱が混在するのが特徴。",
+    care:"適度な運動と体を温めることで血流を改善。玉ねぎ・にんにく・青魚が効果的。",
+    symCats:["vessel","inflame","collagen"],symIds:["inflame","joint"],mk:["liver","heart","pericard"]},
+  tanShi:{name:"痰湿",icon:"💧",color:"#a8ff78",
+    desc:"余分な水分・老廃物が体内に溜まっている状態。むくみ・体の重だるさが特徴。",
+    care:"消化を助ける食事と適度な運動でデトックス。冷たいもの・脂っこいものを避けましょう。",
+    symCats:["digest","vessel","urinary"],symIds:["gut","kidney","diabetes"],mk:["spleen","stomach","lintst"]},
+  shiRe:{name:"湿熱",icon:"🌡️",color:"#ffaa44",
+    desc:"体内に熱と湿気が溜まっている状態。炎症・肌荒れ・口の苦みが特徴です。",
+    care:"辛い物・油っこい物・アルコールを避け、緑黄色野菜を多く摂りましょう。",
+    symCats:["immune","inflame","beauty"],symIds:["allergy","inflame","acne_skin"],mk:["gallbldr","lintst","triple"]},
+};
+const SHINDAN_QS=[
+  {q:"疲れやすく、少し動くだけで息切れすることがありますか？",scores:{qiXu:2,yangXu:1}},
+  {q:"声が小さく、話したり活動するのがおっくうに感じますか？",scores:{qiXu:2,xueXu:1}},
+  {q:"顔色が青白く、めまいや立ちくらみがありますか？",scores:{xueXu:2,qiXu:1}},
+  {q:"爪が割れやすく、目が乾燥したり視力が落ちましたか？",scores:{xueXu:2,yinXu:1}},
+  {q:"手のひら・足の裏・胸がほてることがありますか？",scores:{yinXu:2,shiRe:1}},
+  {q:"口や喉が渇き、夜中に水を飲みたくなりますか？",scores:{yinXu:2,shiRe:1}},
+  {q:"冷え性で、特に手足・腰・おなかが冷えますか？",scores:{yangXu:2,tanShi:1}},
+  {q:"下痢や軟便になりやすく、むくみが出やすいですか？",scores:{yangXu:1,tanShi:2}},
+  {q:"ストレスでイライラしやすく、ため息が多いですか？",scores:{qiZhi:2,xueYu:1}},
+  {q:"胸や脇腹が張る感じや、気分が落ち込むことがありますか？",scores:{qiZhi:2,yinXu:1}},
+  {q:"肩こりや頭痛が慢性的に続いていますか？",scores:{xueYu:2,qiZhi:1}},
+  {q:"顔色が暗く、シミやクマができやすいですか？",scores:{xueYu:2,tanShi:1}},
+  {q:"体が重だるく、頭がぼんやりすることがありますか？",scores:{tanShi:2,yangXu:1}},
+  {q:"口の中がベタつき、口臭や痰が気になりますか？",scores:{tanShi:2,shiRe:1}},
+  {q:"口が苦い・尿の色が濃い・肌荒れが出やすいですか？",scores:{shiRe:2,qiZhi:1}},
+];
+const PULSE_TYPES=[
+  {id:"fu",  name:"浮脈",desc:"軽く触れると感じる脈（表証）",scores:{qiXu:1,yinXu:1}},
+  {id:"chen",name:"沈脈",desc:"深く押すと感じる脈（裏証）",scores:{yangXu:1,xueYu:1}},
+  {id:"chi", name:"遅脈",desc:"ゆっくりした脈（60未満）",scores:{yangXu:2,qiXu:1}},
+  {id:"shu", name:"数脈",desc:"速い脈（90以上）",scores:{yinXu:1,shiRe:2}},
+  {id:"xian",name:"弦脈",desc:"弦のように張った硬い脈",scores:{qiZhi:2,xueYu:1}},
+  {id:"hua", name:"滑脈",desc:"滑らかにころころした脈",scores:{tanShi:2,shiRe:1}},
+  {id:"se",  name:"渋脈",desc:"引っかかるような脈",scores:{xueYu:2,qiXu:1}},
+  {id:"xi",  name:"細脈",desc:"細くか弱い脈",scores:{xueXu:2,yinXu:1}},
+  {id:"ruo", name:"弱脈",desc:"力がなく深い脈",scores:{qiXu:1,yangXu:2}},
+];
+let shindan_step=0,shindan_answers=[],shindan_pulse=[],shindan_tongue="";
+let shindan_result=null,shindan_tongue_scores={};
+function initShindan(){
+  shindan_step=0;shindan_answers=[];shindan_pulse=[];
+  shindan_tongue="";shindan_result=null;shindan_tongue_scores={};renderShindan();
+}
+function renderShindan(){
+  const el=document.getElementById("shindan-content");if(!el)return;
+  el.innerHTML=shindan_step===0?renderShindanTop():shindan_step===1?renderMonsin():
+    shindan_step===2?renderZessin():shindan_step===3?renderMyakusin():
+    shindan_step===4?renderShindanResult():shindan_step===5?renderKarute():"";
+}
+function renderShindanTop(){
+  return`<div style="text-align:center;margin-bottom:22px;padding-top:8px;">
+<div style="font-size:11px;letter-spacing:3px;color:#c44dff;margin-bottom:6px;">TRADITIONAL CHINESE MEDICINE</div>
+<div style="font-size:24px;font-weight:900;background:linear-gradient(90deg,#c44dff,#ff88aa,#ffe066);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">🏥 中医学診断</div>
+<div style="font-size:13px;color:#aaa;margin-top:6px;line-height:1.8;">問診・舌診・脈診から体質を判定し<br>最適なセラピーを自動提案します</div>
+</div>
+${[{s:1,icon:"💬",title:"問診",desc:"15問に答えて体質判定",c:"#c44dff"},
+  {s:2,icon:"👅",title:"舌診（任意）",desc:"舌の写真からAI分析",c:"#ff88aa"},
+  {s:3,icon:"🤚",title:"脈診（任意）",desc:"脈のタイプを選択入力",c:"#ffe066"},
+  {s:4,icon:"📊",title:"体質判定・提案",desc:"結果＋セラピー自動提案",c:"#4dffb4"}
+].map(x=>`<div style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;background:#0d0d1a;border:1px solid ${x.c}33;margin-bottom:8px;">
+<span style="font-size:22px;width:34px;text-align:center;">${x.icon}</span>
+<div><div style="font-size:13px;font-weight:800;color:${x.c};">STEP ${x.s}：${x.title}</div>
+<div style="font-size:11px;color:#888;margin-top:1px;">${x.desc}</div></div></div>`).join("")}
+<button class="btn-primary" onclick="shindan_step=1;renderShindan();"
+  style="background:linear-gradient(135deg,#c44dff33,#c44dff66);color:#fff;box-shadow:0 0 28px #c44dff44;margin-bottom:10px;">
+  ▶　診断をはじめる</button>
+<button onclick="shindan_step=5;renderShindan();"
+  style="width:100%;padding:14px;border-radius:14px;background:#0d0d1a;border:1px solid #333;color:#888;font-size:14px;">
+  📋 カルテを見る</button>`;
+}
+function renderMonsin(){
+  const total=SHINDAN_QS.length,answered=shindan_answers.length;
+  if(answered>=total){setTimeout(()=>{shindan_step=2;renderShindan();},400);
+    return`<div style="text-align:center;padding:50px;color:#c44dff;font-size:20px;font-weight:900;">✅ 問診完了！</div>`;}
+  const q=SHINDAN_QS[answered],pct=answered/total*100;
+  return`<div style="margin-bottom:18px;">
+<div style="display:flex;justify-content:space-between;font-size:12px;color:#888;margin-bottom:4px;"><span>💬 問診</span><span>${answered+1} / ${total}</span></div>
+<div class="prog-bar"><div class="prog-fill" style="width:${pct}%;background:linear-gradient(90deg,#c44dff,#ff88aa);"></div></div>
+</div>
+<div style="padding:22px 18px;border-radius:18px;background:#0d0d1a;border:2px solid #c44dff44;margin-bottom:20px;min-height:110px;display:flex;align-items:center;justify-content:center;">
+<div style="font-size:16px;font-weight:700;color:#fff;line-height:1.7;text-align:center;">${q.q}</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;">
+${[["はい",2,"#c44dff"],["どちらでもない",1,"#888"],["いいえ",0,"#444"]].map(([l,v,col])=>`
+<button onclick="answerQ(${v})" style="padding:16px;border-radius:14px;background:${col}22;border:2px solid ${col}55;color:${col};font-size:16px;font-weight:800;letter-spacing:2px;">${l}</button>`).join("")}
+</div>
+${answered>0?`<button onclick="shindan_answers.pop();renderShindan();" style="width:100%;margin-top:12px;padding:10px;border-radius:12px;background:transparent;border:1px solid #333;color:#666;font-size:13px;">← 前の質問に戻る</button>`:""}`;
+}
+function answerQ(val){
+  shindan_answers.push({scores:SHINDAN_QS[shindan_answers.length].scores,val});renderShindan();
+}
+function renderZessin(){
+  const apiKey=localStorage.getItem("shindan_api_key")||"";
+  return`<div style="text-align:center;margin-bottom:16px;">
+<div style="font-size:32px;margin-bottom:6px;">👅</div>
+<div style="font-size:20px;font-weight:900;color:#ff88aa;">舌診（任意）</div>
+<div style="font-size:12px;color:#aaa;margin-top:4px;">舌の写真を撮影してAIが分析します</div>
+</div>
+${!apiKey?`<div style="padding:14px;border-radius:14px;background:#1a1000;border:1px solid #ffaa4433;margin-bottom:14px;">
+<div style="font-size:13px;color:#ffaa44;font-weight:800;margin-bottom:6px;">🔑 APIキー設定（初回のみ）</div>
+<div style="font-size:12px;color:#aaa;margin-bottom:8px;">舌診AI分析にはAnthropicのAPIキーが必要です。キーはこの端末にのみ保存されます。</div>
+<input id="apiKeyIn" type="password" placeholder="sk-ant-api03-..."
+  style="width:100%;padding:10px 12px;border-radius:10px;background:#0d0d1a;border:1px solid #333;color:#fff;font-size:14px;margin-bottom:8px;outline:none;">
+<button onclick="saveApiKey()" style="width:100%;padding:10px;border-radius:10px;background:#ffaa4433;border:1px solid #ffaa44;color:#ffaa44;font-size:14px;">保存する</button>
+</div>`:`<div style="padding:8px 12px;border-radius:10px;background:#001a00;border:1px solid #4dffb433;margin-bottom:12px;font-size:12px;color:#4dffb4;display:flex;justify-content:space-between;align-items:center;">
+✅ APIキー設定済み<span onclick="localStorage.removeItem('shindan_api_key');renderShindan();" style="color:#666;cursor:pointer;font-size:11px;">変更</span></div>`}
+<div style="margin-bottom:14px;">
+<div style="font-size:13px;color:#aaa;margin-bottom:8px;">📸 舌の写真を撮影または選択</div>
+<input type="file" id="tonguePhoto" accept="image/*" capture="environment" onchange="handleTonguePhoto(this)"
+  style="width:100%;padding:10px;border-radius:12px;background:#0d0d1a;border:1px solid #ff88aa44;color:#ccc;font-size:13px;">
+</div>
+${shindan_tongue?`<div style="text-align:center;margin-bottom:12px;"><img src="${shindan_tongue}" style="max-width:100%;max-height:200px;border-radius:12px;border:2px solid #ff88aa44;object-fit:cover;"></div>`:""}
+<div id="tongueResult" style="margin-bottom:14px;"></div>
+<div style="display:flex;gap:10px;">
+<button onclick="shindan_step=3;renderShindan();" style="flex:1;padding:14px;border-radius:14px;background:#0d0d1a;border:1px solid #333;color:#888;font-size:14px;">スキップ</button>
+${shindan_tongue&&apiKey?`<button onclick="analyzeTongue()" style="flex:2;padding:14px;border-radius:14px;background:#ff88aa33;border:2px solid #ff88aa;color:#ff88aa;font-size:14px;font-weight:800;">👅 AI分析する</button>`:""}
+</div>`;
+}
+function saveApiKey(){
+  const k=(document.getElementById("apiKeyIn")||{}).value||"";
+  if(k){localStorage.setItem("shindan_api_key",k);renderShindan();}
+}
+function handleTonguePhoto(input){
+  if(!input.files||!input.files[0])return;
+  const r=new FileReader();r.onload=e=>{shindan_tongue=e.target.result;renderShindan();};
+  r.readAsDataURL(input.files[0]);
+}
+async function analyzeTongue(){
+  const apiKey=localStorage.getItem("shindan_api_key");if(!apiKey)return;
+  const resEl=document.getElementById("tongueResult");
+  resEl.innerHTML=`<div style="padding:12px;border-radius:12px;background:#1a000f;border:1px solid #ff88aa33;color:#ff88aa;text-align:center;font-size:14px;">🔄 AI分析中...</div>`;
+  try{
+    const base64=shindan_tongue.split(",")[1],mediaType=shindan_tongue.split(";")[0].split(":")[1];
+    const res=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",
+      headers:{"Content-Type":"application/json","x-api-key":apiKey,"anthropic-version":"2023-06-01"},
+      body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:600,
+        messages:[{role:"user",content:[
+          {type:"image",source:{type:"base64",media_type:mediaType,data:base64}},
+          {type:"text",text:"中医学の舌診の観点からこの舌の画像を分析してください。以下を日本語で簡潔に：\n1.舌の色（淡白/淡紅/紅/紫）\n2.舌の形（胖大/痩薄/歯痕）\n3.舌苔（白/黄/灰/薄い/厚い）\n4.潤い（潤/乾燥）\n5.推測体質（気虚/血虚/陰虚/陽虚/気滞/血瘀/痰湿/湿熱）\n6.養生アドバイス1〜2文\n※参考情報であり医療診断ではありません。"}
+        ]}]})});
+    const data=await res.json(),text=data.content?.[0]?.text||"分析できませんでした";
+    shindan_tongue_scores={};
+    Object.entries(KENPO_TYPES).forEach(([k,v])=>{if(text.includes(v.name)){shindan_tongue_scores[k]=(shindan_tongue_scores[k]||0)+3;}});
+    resEl.innerHTML=`<div style="padding:14px;border-radius:14px;background:#1a000f;border:1px solid #ff88aa44;">
+<div style="font-size:12px;font-weight:800;color:#ff88aa;margin-bottom:8px;">👅 舌診AI分析結果</div>
+<div style="font-size:13px;color:#ddd;line-height:1.8;white-space:pre-wrap;">${text}</div>
+</div>
+<button onclick="shindan_step=3;renderShindan();" style="width:100%;margin-top:10px;padding:14px;border-radius:14px;background:#ffe06633;border:2px solid #ffe066;color:#ffe066;font-size:15px;font-weight:800;">次へ：脈診 →</button>`;
+  }catch(e){resEl.innerHTML=`<div style="padding:12px;border-radius:12px;background:#1a0000;border:1px solid #ff336644;color:#ff4466;font-size:13px;">❌ ${e.message}</div>`;}
+}
+function renderMyakusin(){
+  return`<div style="text-align:center;margin-bottom:16px;">
+<div style="font-size:32px;margin-bottom:6px;">🤚</div>
+<div style="font-size:20px;font-weight:900;color:#ffe066;">脈診（任意）</div>
+<div style="font-size:12px;color:#aaa;margin-top:4px;">感じ取れる脈のタイプを選んでください（複数可）</div>
+</div>
+<div style="margin-bottom:16px;">
+${PULSE_TYPES.map(p=>{const on=shindan_pulse.includes(p.id);return`
+<div onclick="togglePulse('${p.id}')" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;
+  background:${on?"#ffe06622":"#0d0d1a"};border:${on?"2px solid #ffe066":"1px solid #1a1a2e"};margin-bottom:8px;cursor:pointer;transition:all 0.2s;">
+<div style="width:20px;height:20px;border-radius:50%;border:2px solid #ffe066;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+  ${on?`<div style="width:12px;height:12px;border-radius:50%;background:#ffe066;"></div>`:""}
+</div>
+<div><div style="font-size:14px;font-weight:800;color:${on?"#ffe066":"#ccc"};">${p.name}</div>
+<div style="font-size:11px;color:#888;">${p.desc}</div></div>
+</div>`;}).join("")}
+</div>
+<div style="display:flex;gap:10px;">
+<button onclick="shindan_step=2;renderShindan();" style="flex:1;padding:14px;border-radius:14px;background:#0d0d1a;border:1px solid #333;color:#888;font-size:14px;">← 戻る</button>
+<button onclick="calcAndShow();" style="flex:2;padding:14px;border-radius:14px;background:#ffe06633;border:2px solid #ffe066;color:#ffe066;font-size:14px;font-weight:800;">
+  ${shindan_pulse.length?"脈診を反映して判定":"スキップして判定"} →</button>
+</div>`;
+}
+function togglePulse(id){
+  const i=shindan_pulse.indexOf(id);if(i>-1)shindan_pulse.splice(i,1);else shindan_pulse.push(id);renderShindan();
+}
+function calcAndShow(){shindan_result=calcConstitution();shindan_step=4;renderShindan();}
+function calcConstitution(){
+  const scores={};Object.keys(KENPO_TYPES).forEach(k=>scores[k]=0);
+  shindan_answers.forEach(a=>{Object.entries(a.scores).forEach(([k,v])=>{scores[k]+=a.val*v;});});
+  Object.entries(shindan_tongue_scores).forEach(([k,v])=>{scores[k]+=v;});
+  shindan_pulse.forEach(pid=>{const p=PULSE_TYPES.find(x=>x.id===pid);if(p)Object.entries(p.scores).forEach(([k,v])=>{scores[k]+=v;});});
+  return Object.entries(scores).sort((a,b)=>b[1]-a[1]).slice(0,3).filter(([,v])=>v>0).map(([k,v])=>({key:k,score:v,...KENPO_TYPES[k]}));
+}
+function renderShindanResult(){
+  if(!shindan_result||!shindan_result.length)return`<div style="text-align:center;padding:40px;color:#888;">判定できませんでした</div>`;
+  const top=shindan_result[0];
+  const relSyms=SYMPTOMS.filter(s=>(top.symCats||[]).includes(s.cat)||(top.symIds||[]).includes(s.id)).slice(0,4);
+  return`<div style="text-align:center;margin-bottom:20px;">
+<div style="font-size:52px;margin-bottom:8px;">${top.icon}</div>
+<div style="font-size:11px;color:#888;letter-spacing:3px;margin-bottom:4px;">あなたの体質タイプ</div>
+<div style="font-size:32px;font-weight:900;color:${top.color};">${top.name}</div>
+<div style="font-size:13px;color:#aaa;margin-top:8px;line-height:1.8;padding:0 8px;">${top.desc}</div>
+</div>
+${shindan_result.length>1?`<div style="padding:12px 14px;border-radius:14px;background:#0d0d1a;border:1px solid #333;margin-bottom:14px;">
+<div style="font-size:12px;color:#888;margin-bottom:6px;">複合体質</div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;">
+${shindan_result.slice(1).map(r=>`<span style="padding:4px 12px;border-radius:20px;background:${r.color}22;border:1px solid ${r.color}44;color:${r.color};font-size:13px;">${r.icon} ${r.name}</span>`).join("")}
+</div></div>`:""}
+<div style="padding:14px;border-radius:14px;background:${top.color}11;border:1px solid ${top.color}44;margin-bottom:14px;">
+<div style="font-size:12px;font-weight:800;color:${top.color};margin-bottom:6px;">🌿 養生アドバイス</div>
+<div style="font-size:13px;color:#ddd;line-height:1.8;">${top.care}</div>
+</div>
+<div style="font-size:14px;font-weight:800;color:${top.color};margin-bottom:10px;">✨ おすすめセラピー（タップで再生）</div>
+${relSyms.map(s=>{const cat=SYM_CATS.find(c=>c.id===s.cat),col=cat?.color||top.color;
+  return`<div onclick="playFromResult('${s.id}')" style="display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:14px;background:${col}18;border:1.5px solid ${col}44;margin-bottom:8px;cursor:pointer;">
+<span style="font-size:24px;">${s.icon}</span>
+<div style="flex:1;"><div style="font-size:14px;font-weight:800;color:${col};">${s.name}</div>
+<div style="font-size:11px;color:#888;margin-top:2px;">${s.desc.split("\n")[0]}</div></div>
+<div style="padding:6px 12px;border-radius:10px;background:${col}33;border:1px solid ${col};color:${col};font-size:12px;font-weight:800;flex-shrink:0;">▶ 再生</div>
+</div>`;}).join("")}
+<div style="display:flex;gap:10px;margin-top:14px;">
+<button onclick="saveKarute(event)" style="flex:1;padding:14px;border-radius:14px;background:#4dffb433;border:2px solid #4dffb4;color:#4dffb4;font-size:14px;font-weight:800;">💾 保存</button>
+<button onclick="shindan_step=0;initShindan();" style="flex:1;padding:14px;border-radius:14px;background:#0d0d1a;border:1px solid #333;color:#888;font-size:14px;">🔄 再診断</button>
+</div>`;
+}
+function playFromResult(symId){
+  const s=SYMPTOMS.find(x=>x.id===symId);if(!s)return;
+  const sF=(s.sIdx||[]).map(i=>S_BASE*JR[i]),cF=(s.cIdx||[]).map(i=>C_BASE*JR[i]);
+  const JI=[1,5/4,3/2,2];
+  const mF=(s.mk||[]).flatMap(k=>{const m=MERIDIANS[k];return m?JI.map(r=>m.freq*r):[];});
+  const allFreqs=[...new Set([...sF,...cF,...mF,...(s.rife||[]).filter(f=>f>=20)])];
+  currentSym=s;currentSymCat=SYM_CATS.find(c=>c.id===s.cat);
+  currentPlayFn=()=>{startFreqScene(allFreqs,7.83,s.name);setTimeout(()=>renderSymPlayer(),50);};
+  currentPlayFn();showPage("symptom");
+}
+function saveKarute(ev){
+  if(!shindan_result||!shindan_result.length)return;
+  const k={id:Date.now(),date:new Date().toLocaleString("ja-JP"),
+    types:shindan_result.map(r=>r.name),icons:shindan_result.map(r=>r.icon),
+    colors:shindan_result.map(r=>r.color),care:shindan_result[0].care,
+    hasTongue:!!shindan_tongue,hasPulse:shindan_pulse.length>0,
+    pulse:shindan_pulse.map(id=>PULSE_TYPES.find(p=>p.id===id)?.name||id)};
+  const list=JSON.parse(localStorage.getItem("shindan_karute")||"[]");
+  list.unshift(k);if(list.length>50)list.pop();
+  localStorage.setItem("shindan_karute",JSON.stringify(list));
+  if(ev&&ev.target){const b=ev.target;b.textContent="✅ 保存済み！";b.disabled=true;setTimeout(()=>{b.textContent="💾 保存";b.disabled=false;},2000);}
+}
+function renderKarute(){
+  const list=JSON.parse(localStorage.getItem("shindan_karute")||"[]");
+  return`<div style="text-align:center;margin-bottom:16px;">
+<div style="font-size:20px;font-weight:900;color:#4dffb4;">📋 カルテ一覧</div>
+<div style="font-size:12px;color:#aaa;margin-top:4px;">${list.length}件保存中</div>
+</div>
+<button onclick="shindan_step=0;renderShindan();" style="width:100%;margin-bottom:14px;padding:12px;border-radius:12px;background:#0d0d1a;border:1px solid #333;color:#888;font-size:14px;">← トップに戻る</button>
+${!list.length?`<div style="text-align:center;padding:40px;color:#666;">まだカルテがありません</div>`
+:list.map(k=>`<div style="padding:14px;border-radius:16px;background:#0d0d1a;border:1px solid ${k.colors[0]}44;margin-bottom:10px;">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+<span style="font-size:24px;">${k.icons[0]}</span>
+<div style="flex:1;"><div style="font-size:16px;font-weight:800;color:${k.colors[0]};">${k.types.join(" + ")}</div>
+<div style="font-size:11px;color:#666;">${k.date}</div></div>
+<button onclick="deleteKarute(${k.id})" style="padding:4px 10px;border-radius:8px;background:#330000;border:1px solid #ff336644;color:#ff4466;font-size:12px;flex-shrink:0;">削除</button>
+</div>
+${k.hasPulse?`<div style="font-size:11px;color:#ffe066;margin-bottom:2px;">🤚 ${k.pulse.join("・")}</div>`:""}
+${k.hasTongue?`<div style="font-size:11px;color:#ff88aa;margin-bottom:2px;">👅 舌診：実施済み</div>`:""}
+<div style="font-size:12px;color:#aaa;margin-top:6px;line-height:1.6;">${k.care}</div>
+</div>`).join("")}
+${list.length?`<button onclick="if(confirm('全て削除しますか？')){localStorage.removeItem('shindan_karute');renderShindan();}" style="width:100%;margin-top:6px;padding:10px;border-radius:12px;background:#1a0000;border:1px solid #ff336633;color:#ff4466;font-size:13px;">🗑 全削除</button>`:""}`;
+}
+function deleteKarute(id){
+  const list=JSON.parse(localStorage.getItem("shindan_karute")||"[]").filter(k=>k.id!==id);
+  localStorage.setItem("shindan_karute",JSON.stringify(list));renderShindan();
+}
+
+// 初期化
+initMeditation();
+initSymptom();
+</script>:0;padding:0;}
 body{background:#050018;color:#fff;font-family:-apple-system,'Helvetica Neue',sans-serif;min-height:100vh;}
 input,button,select{font-family:inherit;}
 button{cursor:pointer;transition:all 0.2s;}
