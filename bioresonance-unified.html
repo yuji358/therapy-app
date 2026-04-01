@@ -1944,7 +1944,7 @@ async function analyzeTongue(){
       body:JSON.stringify({image:base64,mediaType:mediaType})
     });
     const data=await res.json();
-    const text=data.content[0].text||"分析できませんでした";
+    const text=(data.content&&data.content[0]&&data.content[0].text)||data.error||"分析できませんでした"||"分析できませんでした";
     shindan_tongue_scores={};
     Object.entries(KENPO_TYPES).forEach(([k,v])=>{if(text.includes(v.name)){shindan_tongue_scores[k]=(shindan_tongue_scores[k]||0)+3;}});
     resEl.innerHTML=`<div style="padding:14px;border-radius:14px;background:#1a000f;border:1px solid #ff88aa44;">
