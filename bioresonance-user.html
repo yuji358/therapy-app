@@ -71,7 +71,7 @@ input[type=range]{width:100%;accent-color:#4dffb4;height:6px;}
     <div style="text-align:center;margin-bottom:20px;">
       <div style="font-size:11px;letter-spacing:4px;color:#00d4ff;opacity:0.7;margin-bottom:4px;">GAMMA · BIORESONANCE · 40Hz</div>
       <div style="font-size:24px;font-weight:900;background:linear-gradient(90deg,#00d4ff,#4dffb4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">🧬 40Hz ガンマ波セラピー</div>
-      <div style="font-size:13px;color:#cccccc;margin-top:6px;line-height:1.8;">神経炎症抑制 × 純正律 × 脳同調</div>
+      <div style="font-size:13px;color:#cccccc;margin-top:6px;line-height:1.8;">脳活性化 × 神経炎症抑制 × 認知機能サポート</div>
     </div>
 
     <!-- 科学的根拠カード -->
@@ -115,21 +115,15 @@ input[type=range]{width:100%;accent-color:#4dffb4;height:6px;}
   </div>
 </div>
 
-<!-- 統合カルテページ -->
-<div class="page" id="page-integrated">
-  <div class="maxw">
-    <div id="integrated-content"></div>
-  </div>
-</div>
 
 
 
 <div class="page active" id="page-home">
   <div class="maxw">
     <div style="text-align:center;margin-bottom:28px;">
-      <div style="font-size:11px;letter-spacing:4px;color:#aaaaaa;margin-bottom:6px;">PEMF · BIORESONANCE THERAPY</div>
+      <div style="font-size:11px;letter-spacing:4px;color:#aaaaaa;margin-bottom:6px;">BIORESONANCE THERAPY</div>
       <div style="font-size:26px;font-weight:900;background:linear-gradient(90deg,#4dffb4,#ffe066,#ff88ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">バイオレゾナンス セラピーシステム</div>
-      <div style="font-size:13px;color:#cccccc;margin-top:8px;line-height:1.8;">シューマン共振 × チャクラ × 経絡<br>バイオレゾナンスで細胞から整える</div>
+      <div style="font-size:13px;color:#cccccc;margin-top:8px;line-height:1.8;">地球共鳴 × チャクラ × 経絡<br>バイオレゾナンスで細胞から整える</div>
       <div style="margin-top:12px;">
         
       </div>
@@ -141,8 +135,8 @@ input[type=range]{width:100%;accent-color:#4dffb4;height:6px;}
       <div style="display:flex;align-items:center;gap:12px;">
         <span style="font-size:32px;">🌍⚡</span>
         <div>
-          <div style="font-size:18px;font-weight:800;color:#4dffb4;">シューマン × シトクロムC</div>
-          <div style="font-size:12px;color:#aaaaaa;">7.83Hz × 8.02Hz · 純正律 · 4シーン</div>
+          <div style="font-size:18px;font-weight:800;color:#4dffb4;">地球共鳴 × 細胞共鳴</div>
+          <div style="font-size:12px;color:#aaaaaa;">地球共鳴 × 細胞エネルギー · 4シーン</div>
         </div>
         <span style="margin-left:auto;font-size:22px;color:#4dffb4;">›</span>
       </div>
@@ -152,7 +146,7 @@ input[type=range]{width:100%;accent-color:#4dffb4;height:6px;}
       <div style="display:flex;align-items:center;gap:12px;">
         <span style="font-size:32px;">🧘</span>
         <div>
-          <div style="font-size:18px;font-weight:800;color:#ff88ff;">チャクラ PEMF</div>
+          <div style="font-size:18px;font-weight:800;color:#ff88ff;">チャクラ</div>
           <div style="font-size:12px;color:#884488;">古代ヒーリング音 × 地球・太陽 · 6シーン</div>
         </div>
         <span style="margin-left:auto;font-size:22px;color:#ff88ff;">›</span>
@@ -164,7 +158,7 @@ input[type=range]{width:100%;accent-color:#4dffb4;height:6px;}
         <span style="font-size:32px;">🩺</span>
         <div>
           <div style="font-size:18px;font-weight:800;color:#ff88aa;">症状別セラピー</div>
-          <div style="font-size:12px;color:#884455;">細胞共鳴音 × 経絡 × 純正律</div>
+          <div style="font-size:12px;color:#884455;">エネルギーバランスを整える · 7チャクラ</div>
         </div>
         <span style="margin-left:auto;font-size:22px;color:#ff88aa;">›</span>
       </div>
@@ -180,6 +174,39 @@ input[type=range]{width:100%;accent-color:#4dffb4;height:6px;}
         <span style="margin-left:auto;font-size:22px;color:#c44dff;">›</span>
       </div>
     </div>
+
+    <!-- チェックインカード -->
+    <div style="padding:16px;border-radius:18px;background:linear-gradient(135deg,#0a001a,#001a10);border:1px solid #4dffb433;margin-bottom:12px;">
+      <div style="font-size:14px;font-weight:800;color:#4dffb4;margin-bottom:10px;">📝 今日のチェックイン</div>
+      <div id="checkinSummary" style="font-size:12px;color:#888;margin-bottom:10px;">今日の記録がまだありません</div>
+      <button onclick="openCheckin()" style="width:100%;padding:12px;border-radius:14px;border:none;background:linear-gradient(135deg,rgba(77,255,180,0.2),rgba(77,255,180,0.1));color:#4dffb4;font-size:14px;font-weight:700;cursor:pointer;">＋ チェックインする</button>
+    </div>
+    <div id="checkinHistory" style="margin-bottom:12px;"></div>
+  </div>
+</div>
+
+<!-- チェックインモーダル -->
+<div id="checkinModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:200;overflow-y:auto;padding:20px 16px 40px;">
+  <div style="max-width:480px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:20px;">
+      <div style="font-size:20px;font-weight:900;color:#4dffb4;">📝 今日のチェックイン</div>
+      <div style="font-size:12px;color:#888;margin-top:4px;">セラピー前後に記録してください</div>
+    </div>
+    <div style="background:#0d0d1a;border-radius:16px;padding:16px;margin-bottom:12px;border:1px solid #4dffb422;">
+      <div style="font-size:14px;font-weight:800;color:#4dffb4;margin-bottom:12px;">🌡️ 体調レベル</div>
+      <div id="condBtns" style="display:flex;justify-content:space-between;gap:6px;"></div>
+    </div>
+    <div style="background:#0d0d1a;border-radius:16px;padding:16px;margin-bottom:12px;border:1px solid #78ffd622;">
+      <div style="font-size:14px;font-weight:800;color:#78ffd6;margin-bottom:12px;">😴 睡眠の質</div>
+      <div id="sleepBtns" style="display:flex;justify-content:space-between;gap:6px;"></div>
+    </div>
+    <div style="background:#0d0d1a;border-radius:16px;padding:16px;margin-bottom:20px;border:1px solid #ff88aa22;">
+      <div style="font-size:14px;font-weight:800;color:#ff88aa;margin-bottom:6px;">🧘 ストレスレベル</div>
+      <div style="font-size:10px;color:#666;margin-bottom:8px;">※ 1が高い・5が低い（穏やか）</div>
+      <div id="stressBtns" style="display:flex;justify-content:space-between;gap:6px;"></div>
+    </div>
+    <button onclick="saveCheckin()" style="width:100%;padding:16px;border-radius:16px;border:none;background:linear-gradient(135deg,rgba(77,255,180,0.4),rgba(77,255,180,0.2));color:#4dffb4;font-size:16px;font-weight:800;cursor:pointer;margin-bottom:10px;">✅ 記録する</button>
+    <button onclick="closeCheckin()" style="width:100%;padding:12px;border-radius:16px;border:1px solid #333;background:transparent;color:#666;font-size:14px;cursor:pointer;">キャンセル</button>
   </div>
 </div>
 
@@ -189,7 +216,7 @@ input[type=range]{width:100%;accent-color:#4dffb4;height:6px;}
 <div class="page" id="page-meditation">
   <div class="maxw">
     <div style="font-size:11px;letter-spacing:3px;color:#4dffb4;opacity:0.7;text-align:center;margin-bottom:4px;">SCHUMANN × CYTOCHROME-C</div>
-    <div style="font-size:22px;font-weight:900;text-align:center;background:linear-gradient(90deg,#4dffb4,#ffe066);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:16px;">シューマン × シトクロムC</div>
+    <div style="font-size:22px;font-weight:900;text-align:center;background:linear-gradient(90deg,#4dffb4,#ffe066);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:16px;">地球共鳴 × 細胞共鳴</div>
 
     <div class="grid2" style="margin-bottom:20px;" id="sceneGrid"></div>
 
@@ -211,7 +238,7 @@ input[type=range]{width:100%;accent-color:#4dffb4;height:6px;}
 <!-- ════════════════════════════════════════ -->
 <div class="page" id="page-chakra">
   <div class="maxw">
-    <div style="font-size:22px;font-weight:900;text-align:center;background:linear-gradient(90deg,#ff88ff,#ffaa44);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:16px;">チャクラ・Earth/Sun PEMF</div>
+    <div style="font-size:22px;font-weight:900;text-align:center;background:linear-gradient(90deg,#ff88ff,#ffaa44);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:16px;">チャクラ</div>
     <div id="chakraGrid" style="margin-bottom:16px;"></div>
     <div id="chakraControls"></div>
   </div>
@@ -229,6 +256,19 @@ input[type=range]{width:100%;accent-color:#4dffb4;height:6px;}
       <div style="font-size:14px;color:#ff88aa;font-weight:700;margin-bottom:8px;">🔍 症状を直接入力</div>
       <input class="input-box" id="symptomSearch" placeholder="腰痛、むくみ、眠れない、疲れ…" oninput="searchSymptoms()">
       <div id="searchResults" style="margin-top:10px;"></div>
+    </div>
+
+    <!-- まとめて再生パネル -->
+    <div id="multiSymPanel" style="display:none;position:sticky;top:8px;z-index:50;margin-bottom:12px;padding:12px 14px;border-radius:16px;background:#1a0020;border:2px solid #ff88aa;box-shadow:0 0 20px #ff88aa44;">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+        <div style="font-size:13px;font-weight:800;color:#ff88aa;flex:1;">🎵 まとめて再生 <span id="multiSymCount" style="font-size:11px;color:#aaa;"></span></div>
+        <button onclick="clearMultiSym()" style="padding:4px 10px;border-radius:8px;background:#33000a;border:1px solid #ff336644;color:#ff4466;font-size:12px;">✕ クリア</button>
+      </div>
+      <div id="multiSymTags" style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px;"></div>
+      <button onclick="toggleMultiSymPlay()" id="multiSymPlayBtn"
+        style="width:100%;padding:12px;border-radius:12px;background:linear-gradient(135deg,#ff88aa44,#ff88aa88);border:2px solid #ff88aa;color:#fff;font-size:15px;font-weight:800;">
+        ▶　選択した症状をまとめて再生
+      </button>
     </div>
 
     <!-- カテゴリ -->
@@ -268,6 +308,38 @@ input[type=range]{width:100%;accent-color:#4dffb4;height:6px;}
 </div>
 
 <script>
+// localStorageが使えない環境向けのフォールバック
+(function(){
+  var mem={};
+  try{localStorage.setItem("__t","1");localStorage.removeItem("__t");}
+  catch(e){
+    Object.defineProperty(window,"localStorage",{value:{
+      getItem:function(k){return mem.hasOwnProperty(k)?mem[k]:null;},
+      setItem:function(k,v){mem[k]=String(v);},
+      removeItem:function(k){delete mem[k];},
+      clear:function(){mem={};}
+    },writable:false});
+  }
+  // エラーを握りつぶしてScriptエラーを防ぐ
+  })();
+
+// ── 安全ラッパー ──────────────────────────────
+window.onerror=function(msg,src,line,col,err){
+  console.warn("Error:",msg,line,col);return true;
+};
+// localStorageが使えない環境でもエラーにならないようにする
+var _memStore={};
+try{localStorage.setItem("_test","1");localStorage.removeItem("_test");}
+catch(e){
+  window.localStorage={
+    getItem:function(k){return _memStore[k]||null;},
+    setItem:function(k,v){_memStore[k]=String(v);},
+    removeItem:function(k){delete _memStore[k];},
+    clear:function(){_memStore={};}
+  };
+}
+// ──────────────────────────────────────────────
+
 // ============================================================
 // データ定義
 // ============================================================
@@ -291,7 +363,7 @@ const CHAKRA_SCENES=[
   {id:"solar",   name:"太陽神経叢",    sub:"528Hz DNA修復・変容",         icon:"🟡",color:"#ffdd00",freqs:[528,660,792,1056],      iso:8.02},
   {id:"heart",   name:"ハートチャクラ",sub:"639Hz 愛・つながり",           icon:"💚",color:"#44ff88",freqs:[639,798.75,958.5,1278],iso:7.83},
   {id:"throat",  name:"喉チャクラ",   sub:"741Hz 表現・真実",             icon:"🔵",color:"#4488ff",freqs:[741,926.25,1111.5,1482],iso:8.02},
-  {id:"earthsun",name:"地球・太陽 PEMF",sub:"地球公転×太陽周波数",        icon:"🌍",color:"#ffaa44",freqs:[136.1,126.22,170.125,189.33],iso:7.83},
+  {id:"earthsun",name:"地球・太陽 共鳴",sub:"地球公転×太陽周波数",        icon:"🌍",color:"#ffaa44",freqs:[136.1,126.22,170.125,189.33],iso:7.83},
 ];
 
 // 症状カテゴリ
@@ -344,6 +416,7 @@ const SYMPTOMS=[
   {id:"backpain",cat:"inflame",name:"腰痛・筋肉痛",icon:"🦴",desc:"筋肉の炎症・腰の痛み",   rife:[9.6,80,880,2720],sIdx:[0,2,4,6],cIdx:[0,3,4], mk:["bladder","gallbldr"]},
   {id:"joint",   cat:"inflame",name:"関節炎・リウマチ",icon:"🦵",desc:"関節の痛み・炎症ケア",    rife:[20,727,787,880], sIdx:[0,2,4,6],cIdx:[0,1,4,5],mk:["liver","gallbldr"]},
   {id:"headache",cat:"inflame",name:"頭痛・偏頭痛",icon:"😣",desc:"頭痛・片頭痛",            rife:[880,787,727,20], sIdx:[0,2,4],cIdx:[0,3,4],  mk:["liver","gallbldr"]},
+  {id:"toothache",cat:"inflame",name:"歯痛・歯槽膿漏",icon:"🦷",desc:"歯痛・歯茎の炎症・歯槽膿漏\n大腸経（下歯）・胃経（上歯）・腎経（歯の根）対応",rife:[776,727,787,880,1550],sIdx:[0,2,4,6],cIdx:[0,2,4],mk:["lintst","stomach","kidney"]},
   {id:"gut",     cat:"digest", name:"腸内細菌異常",icon:"🌿",desc:"腸内フローラのバランス",   rife:[240,448,688,776],sIdx:[0,2,4],cIdx:[0,1,4],  mk:["lintst","spleen"]},
   {id:"stomach", cat:"digest", name:"胃炎・消化不良",icon:"🟡",desc:"胃の不快感・消化力低下", rife:[880,727,465,250],sIdx:[0,2,4],cIdx:[0,3,4],  mk:["stomach","spleen"]},
   {id:"diabetes",cat:"digest", name:"糖尿病・代謝",icon:"🍬",desc:"血糖バランス・代謝サポート",rife:[727,787,880],sIdx:[0,4,5,7],cIdx:[0,2,4,7],mk:["spleen","stomach"]},
@@ -549,7 +622,7 @@ const SYMPTOMS=[
    sIdx:[0,2,4,6],cIdx:[0,1,4,5],mk:["lung","liver","spleen","triple"]},
 
   {id:"cancer_harmonic",cat:"cancer",name:"ライフ倍音シリーズ（66.5Hz基音）",icon:"🌈",
-   desc:"ライフオリジナル倍音シリーズ\n66.5Hzを基音として純正律展開",
+   desc:"ライフオリジナル倍音シリーズ\n細胞共鳴音の倍音展開",
    rife:[66.5,133,199.5,266,332.5,399,465.5,532,598.5,665],
    sIdx:[0,2,4,6],cIdx:[0,1,4,5],mk:["liver","spleen","kidney","triple"]},
 ];
@@ -678,7 +751,7 @@ let vol=0.8, sVol=0.6, cVol=0.6;
 // iOSはWeb Audio APIだけでは画面消灯で停止するため
 // 無音の <audio> ループを同時に流すことでオーディオセッションを維持する
 let bgAudio=null;
-function startBgAudioKeepAlive(){
+function startBgAudioKeepAlive(){try{
   if(bgAudio)return;
   // 1秒の無音WAVをBase64で埋め込み（外部ファイル不要）
   const silentWav="data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
@@ -687,20 +760,23 @@ function startBgAudioKeepAlive(){
   bgAudio.loop=true;
   bgAudio.volume=0.001; // 無音に近いが0だと止まる機種がある
   bgAudio.play().catch(()=>{});
+}catch(e){}
 }
-function stopBgAudioKeepAlive(){
+function stopBgAudioKeepAlive(){try{
   if(!bgAudio)return;
   bgAudio.pause();bgAudio.src="";bgAudio=null;
+}catch(e){}
 }
 
 // ── MediaSession API：ロック画面に再生コントロールを表示 ──────
 function setupMediaSession(title){
+  try{
   if(!("mediaSession" in navigator))return;
-  navigator.mediaSession.metadata=new MediaMetadata({
+  try{navigator.mediaSession.metadata=new MediaMetadata({
     title: title||"細胞共鳴セラピー",
     artist: "ヒーリングサウンド セラピー",
     album: "バイオレゾナンス",
-  });
+  });}catch(e){}
   navigator.mediaSession.setActionHandler("play", ()=>{
     if(currentPlayFn&&!playing)currentPlayFn();
   });
@@ -711,6 +787,7 @@ function setupMediaSession(title){
     stopAudio();updateAllTimers();
   });
   navigator.mediaSession.playbackState="playing";
+  }catch(e){console.warn("MediaSession:",e);}
 }
 
 function stopAudio(){
@@ -723,7 +800,7 @@ function stopAudio(){
   playing=false;remaining=0;
   stopBgAudioKeepAlive();
   if("mediaSession" in navigator)
-    navigator.mediaSession.playbackState="none";
+    try{navigator.mediaSession.playbackState="none";}catch(e){}
 }
 
 // オシレーター1本追加（最シンプル）
@@ -766,7 +843,7 @@ function addIsochronic(freq, isoHz, gainVal, dest){
 // AudioContext作成＋resume（resume完了後にコールバック実行）
 function createCtxAndRun(callback, sessionTitle){
   stopAudio();
-  audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+  try{audioCtx=new(window.AudioContext||window.webkitAudioContext)();}catch(e){alert("このブラウザは音声再生に対応していません");return;}
   const run=()=>{
     const master=audioCtx.createGain();
     master.gain.value=vol;
@@ -907,7 +984,7 @@ function playerHTML(color,showSCVol){
   ${showSCVol?`
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
     <div style="background:#4dffb418;border-radius:12px;padding:10px 12px;border:1px solid #4dffb433;">
-      <div style="display:flex;justify-content:space-between;font-size:13px;color:#4dffb4;margin-bottom:5px;"><span>🌍 シューマン</span><span id="sVolLabel">${Math.round(sVol*100)}%</span></div>
+      <div style="display:flex;justify-content:space-between;font-size:13px;color:#4dffb4;margin-bottom:5px;"><span>🌍 地球共鳴</span><span id="sVolLabel">${Math.round(sVol*100)}%</span></div>
       <input type="range" min="0" max="1" step="0.01" value="${sVol}" oninput="setSVol(this.value)" style="accent-color:#4dffb4">
     </div>
     <div style="background:#ffe06618;border-radius:12px;padding:10px 12px;border:1px solid #ffe06633;">
@@ -1040,7 +1117,7 @@ setInterval(()=>{
   const t=Date.now()/1000;
   const b7=Math.sin(t*7.83*2*Math.PI)>0.7;
   const b8=Math.sin(t*8.02*2*Math.PI)>0.7;
-  const c=currentSCScene?.color||"#4dffb4";
+  const c=(currentSCScene&&currentSCScene.color)||"#4dffb4";
   const r1=document.getElementById("ring1");const r2=document.getElementById("ring2");
   const r3=document.getElementById("ring3");const r4=document.getElementById("ring4");
   if(r1){r1.style.borderColor=b7?`${c}66`:`${c}18`;r1.style.boxShadow=b7?`0 0 14px ${c}44`:"";}
@@ -1090,11 +1167,70 @@ function toggleChakraPlay(){
 // 症状別セラピー
 // ============================================================
 let currentSymCat=null, currentSym=null;
+let multiSymSelected=[];
+
+function toggleMultiSym(symId){
+  const idx=multiSymSelected.indexOf(symId);
+  if(idx>-1)multiSymSelected.splice(idx,1);
+  else multiSymSelected.push(symId);
+  renderMultiSymPanel();
+  renderSymList();
+}
+
+function clearMultiSym(){
+  multiSymSelected=[];
+  if(playing)stopAudio();
+  renderMultiSymPanel();
+  renderSymList();
+  document.getElementById("symptomPlayer").innerHTML="";
+}
+
+function renderMultiSymPanel(){
+  const panel=document.getElementById("multiSymPanel");
+  if(!panel)return;
+  if(multiSymSelected.length<2){panel.style.display="none";return;}
+  panel.style.display="block";
+  const count=document.getElementById("multiSymCount");
+  if(count)count.textContent=`（${multiSymSelected.length}件選択中）`;
+  const tags=document.getElementById("multiSymTags");
+  if(tags){
+    tags.innerHTML=multiSymSelected.map(id=>{
+      const s=SYMPTOMS.find(x=>x.id===id);
+      const cat=SYM_CATS.find(ct=>ct.id===(s&&s.cat));
+      const col=(cat&&cat.color)||"#ff88aa";
+      return`<span onclick="toggleMultiSym('${id}')" style="padding:3px 10px;border-radius:12px;background:${col}22;border:1px solid ${col};color:${col};font-size:12px;cursor:pointer;">${(s&&s.icon)||""} ${(s&&s.name)||id} ×</span>`;
+    }).join("");
+  }
+  const btn=document.getElementById("multiSymPlayBtn");
+  if(btn){
+    btn.textContent=playing?"⏹　停　止":"▶　選択した症状をまとめて再生";
+    btn.style.background=playing?"linear-gradient(135deg,#2a0000,#440000)":"linear-gradient(135deg,#ff88aa44,#ff88aa88)";
+    btn.style.color=playing?"#ff4466":"#fff";
+  }
+}
+
+function toggleMultiSymPlay(){
+  if(playing){stopAudio();renderMultiSymPanel();return;}
+  const syms=multiSymSelected.map(id=>SYMPTOMS.find(x=>x.id===id)).filter(Boolean);
+  if(!syms.length)return;
+  const JI=[1,5/4,3/2,2];
+  const allFreqs=[...new Set(syms.flatMap(s=>{
+    const sF=(s.sIdx||[]).map(i=>S_BASE*JR[i]);
+    const cF=(s.cIdx||[]).map(i=>C_BASE*JR[i]);
+    const mF=(s.mk||[]).flatMap(k=>{const m=MERIDIANS[k];return m?JI.map(r=>m.freq*r):[];});
+    return[...sF,...cF,...mF,...(s.rife||[]).filter(f=>f>=20)];
+  }))];
+  const names=syms.map(s=>s.name).join("＋");
+  currentPlayFn=()=>{startFreqScene(allFreqs,7.83,names);setTimeout(()=>renderMultiSymPanel(),50);};
+  currentPlayFn();
+  renderMultiSymPanel();
+}
+
 function initSymptom(){
   const grid=document.getElementById("symptomCatGrid");grid.innerHTML="";
   SYM_CATS.forEach(cat=>{
     const d=document.createElement("div");
-    d.className="scene-card";d.style.cssText=`background:${cat.color}18;border-color:${currentSymCat?.id===cat.id?cat.color:cat.color+"44"};cursor:pointer;`;
+    d.className="scene-card";d.style.cssText=`background:${cat.color}18;border-color:${(currentSymCat&&currentSymCat.id)===cat.id?cat.color:cat.color+"44"};cursor:pointer;`;
     d.innerHTML=`<div style="font-size:28px;margin-bottom:6px;">${cat.icon}</div><div style="font-size:15px;font-weight:800;color:${cat.color};">${cat.name}</div><div style="font-size:11px;color:#aaaaaa;margin-top:2px;">${SYMPTOMS.filter(s=>s.cat===cat.id).length}種類</div>`;
     d.onclick=()=>{currentSymCat=cat;renderSymList();};
     grid.appendChild(d);
@@ -1102,22 +1238,74 @@ function initSymptom(){
 }
 
 function renderSymList(){
-  const el=document.getElementById("symptomList");el.innerHTML="";
+  const el=document.getElementById("symptomList");
+  el.innerHTML="";
   if(!currentSymCat)return;
-  const syms=SYMPTOMS.filter(s=>s.cat===currentSymCat.id);
-  syms.forEach(s=>{
+  const syms=SYMPTOMS.filter(function(s){return s.cat===currentSymCat.id;});
+  const col=currentSymCat.color;
+  // ヘッダー
+  const hd=document.createElement("div");
+  hd.style.cssText="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;";
+  hd.innerHTML='<div style="font-size:13px;font-weight:800;color:'+col+';">'+currentSymCat.icon+' '+currentSymCat.name+'（'+syms.length+'種）</div>'
+    +'<div style="font-size:11px;color:#aaa;">＋で複数選択→まとめて再生</div>';
+  el.appendChild(hd);
+  syms.forEach(function(s){
+    const sel=multiSymSelected.indexOf(s.id)>-1;
+    const merNames=(s.mk||[]).map(function(k){return(MERIDIANS[k]&&MERIDIANS[k].name)||"";}).filter(Boolean).join("・");
     const d=document.createElement("div");
-    d.style.cssText=`padding:16px 18px;border-radius:16px;margin-bottom:10px;background:${currentSymCat.color}18;border:2px solid ${currentSymCat.color}44;display:flex;align-items:center;gap:14px;cursor:pointer;`;
-    const merNames=(s.mk||[]).map(k=>MERIDIANS[k]?.name||"").filter(Boolean).join("・");
-    d.innerHTML=`
-      <div style="font-size:30px;flex-shrink:0;">${s.icon}</div>
-      <div style="flex:1;">
-        <div style="font-size:17px;font-weight:800;color:${currentSymCat.color};margin-bottom:3px;">${s.name}</div>
-        <div style="font-size:12px;color:#bbb;margin-bottom:4px;">${s.desc}</div>
-        ${merNames?`<div style="font-size:11px;color:#aaaaaa;">経絡：${merNames}</div>`:""}
-      </div>
-      <div style="font-size:22px;color:${currentSymCat.color};flex-shrink:0;">›</div>`;
-    d.onclick=()=>{currentSym=s;renderSymPlayer();};
+    d.style.cssText="padding:14px 16px;border-radius:16px;margin-bottom:8px;"
+      +"background:"+(sel?col+"33":col+"18")+";"
+      +"border:2px solid "+(sel?col:col+"44")+";"
+      +"display:flex;align-items:center;gap:12px;transition:all 0.2s;";
+    // 左：アイコン
+    const iconDiv=document.createElement("div");
+    iconDiv.style.cssText="font-size:28px;flex-shrink:0;";
+    iconDiv.textContent=s.icon;
+    // 中央：テキスト
+    const textDiv=document.createElement("div");
+    textDiv.style.cssText="flex:1;cursor:pointer;";
+    textDiv.addEventListener("click",function(){
+      currentSym=s;
+      currentSymCat=SYM_CATS.find(function(ct){return ct.id===s.cat;})||currentSymCat;
+      renderSymPlayer();
+    });
+    const nameDiv=document.createElement("div");
+    nameDiv.style.cssText="font-size:16px;font-weight:800;margin-bottom:2px;color:"+col+";";
+    nameDiv.textContent=s.name;
+    const descDiv=document.createElement("div");
+    descDiv.style.cssText="font-size:11px;color:#ccc;margin-bottom:2px;";
+    descDiv.textContent=s.desc.split("\n")[0];
+    textDiv.appendChild(nameDiv);
+    textDiv.appendChild(descDiv);
+    if(merNames){
+      const merDiv=document.createElement("div");
+      merDiv.style.cssText="font-size:10px;color:#aaa;";
+      merDiv.textContent="経絡："+merNames;
+      textDiv.appendChild(merDiv);
+    }
+    // 右：＋ボタン
+    const btnWrap=document.createElement("div");
+    btnWrap.style.cssText="display:flex;flex-direction:column;gap:4px;align-items:center;flex-shrink:0;";
+    const btn=document.createElement("button");
+    btn.style.cssText="width:36px;height:36px;border-radius:50%;"
+      +"background:"+(sel?col:"transparent")+";"
+      +"border:2px solid "+col+";"
+      +"color:"+(sel?"#000":col)+";"
+      +"font-size:18px;font-weight:900;"
+      +"display:flex;align-items:center;justify-content:center;";
+    btn.textContent=sel?"✓":"+";
+    btn.addEventListener("click",function(e){
+      e.stopPropagation();
+      toggleMultiSym(s.id);
+    });
+    const btnLabel=document.createElement("div");
+    btnLabel.style.cssText="font-size:10px;color:"+(sel?col:"#aaa")+";";
+    btnLabel.textContent=sel?"選択中":"追加";
+    btnWrap.appendChild(btn);
+    btnWrap.appendChild(btnLabel);
+    d.appendChild(iconDiv);
+    d.appendChild(textDiv);
+    d.appendChild(btnWrap);
     el.appendChild(d);
   });
 }
@@ -1126,7 +1314,7 @@ function renderSymPlayer(){
   if(!currentSym)return;
   const s=currentSym;
   const cat=SYM_CATS.find(c=>c.id===s.cat);
-  const c=cat?.color||"#ff88aa";
+  const c=(cat&&cat.color)||"#ff88aa";
   const freqsA=s.sIdx.map(i=>S_BASE*JR[i]);
   const freqsB=s.cIdx.map(i=>C_BASE*JR[i]);
   const mFreqsAll=(s.mk||[]).flatMap(k=>mFreqs(k));
@@ -1170,7 +1358,7 @@ function searchSymptoms(){
   const hits=SYMPTOMS.filter(s=>s.name.includes(q)||s.desc.includes(q)||(s.mk||[]).some(k=>MERIDIANS[k]?.name.includes(q)));
   if(hits.length===0){el.innerHTML=`<div style="color:#aaaaaa;font-size:13px;padding:10px;">一致する症状が見つかりません</div>`;return;}
   hits.forEach(s=>{
-    const cat=SYM_CATS.find(c=>c.id===s.cat);const col=cat?.color||"#ff88aa";
+    const cat=SYM_CATS.find(c=>c.id===s.cat);const col=(cat&&cat.color)||"#ff88aa";
     const d=document.createElement("div");
     d.style.cssText=`padding:12px 16px;border-radius:14px;margin-bottom:8px;background:${col}18;border:1.5px solid ${col}44;display:flex;align-items:center;gap:12px;cursor:pointer;`;
     d.innerHTML=`<div style="font-size:26px;">${s.icon}</div><div style="flex:1;"><div style="font-size:16px;font-weight:800;color:${col};">${s.name}</div><div style="font-size:12px;color:#bbb;">${s.desc}</div></div><div style="font-size:20px;color:${col};">›</div>`;
@@ -1324,10 +1512,10 @@ let gammaLayers={base:true, binaural:true, rife:true, iso:true};
 function initGamma(){
   // レイヤートグルUI
   const layerDefs=[
-    {key:"base",    label:"40Hz 純正律ベース音",  sub:"低周波ベース音 · 逆位相防止デチューン",icon:"🔵"},
+    {key:"base",    label:"脳活性化ベース音",  sub:"脳の深部に響くベース音",icon:"🔵"},
     {key:"binaural",label:"バイノーラルビート",   sub:"左右の耳に異なる音 → 脳内でガンマ波生成",  icon:"🎧"},
     {key:"rife",    label:"細胞共鳴音",          sub:"古代ヒーリング周波数 · 音量控えめ",     icon:"⚡"},
-    {key:"iso",     label:"アイソクロニック",     sub:"ガンマ波脈動 + シューマン共振",        icon:"🌀"},
+    {key:"iso",     label:"アイソクロニック",     sub:"ガンマ波脈動 + 地球共鳴",        icon:"🌀"},
   ];
   const el=document.getElementById("gammaLayers");
   el.innerHTML=layerDefs.map(d=>`
@@ -1719,13 +1907,13 @@ function renderShigoNow(){
     ${related.map(s=>{
       const cat=SYM_CATS.find(c2=>c2.id===s.cat);
       return `<div onclick="showPage('symptom');setTimeout(()=>{currentSymCat=SYM_CATS.find(c=>c.id==='${s.cat}');renderSymList();currentSym=SYMPTOMS.find(x=>x.id==='${s.id}');renderSymPlayer();},100);"
-        style="display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:14px;background:${cat?.color||"#4dffb4"}18;border:1.5px solid ${cat?.color||"#4dffb4"}44;margin-bottom:8px;cursor:pointer;">
+        style="display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:14px;background:${(cat&&cat.color)||"#4dffb4"}18;border:1.5px solid ${(cat&&cat.color)||"#4dffb4"}44;margin-bottom:8px;cursor:pointer;">
         <span style="font-size:24px;">${s.icon}</span>
         <div style="flex:1;">
-          <div style="font-size:14px;font-weight:800;color:${cat?.color||"#4dffb4"};">${s.name}</div>
+          <div style="font-size:14px;font-weight:800;color:${(cat&&cat.color)||"#4dffb4"};">${s.name}</div>
           <div style="font-size:11px;color:#aaaaaa;">${s.desc.split('\n')[0]}</div>
         </div>
-        <span style="color:${cat?.color||"#4dffb4"};">›</span>
+        <span style="color:${(cat&&cat.color)||"#4dffb4"};">›</span>
       </div>`;
     }).join("")}`:
     `<div style="font-size:13px;color:#cccccc;padding:10px;">関連プログラムを読み込み中...</div>`;
@@ -1789,7 +1977,112 @@ function toggleShigoPlay(){
 
 
 
+
+// ============================================================
+// チェックイン機能
+// ============================================================
+const CI_COND  =[["1","😞","とても悪い"],["2","😕","やや悪い"],["3","😐","ふつう"],["4","🙂","良い"],["5","😊","とても良い"]];
+const CI_SLEEP =[["1","😩","眠れず"],["2","😪","浅い"],["3","😐","まあまあ"],["4","😌","よく眠れた"],["5","😴","ぐっすり"]];
+const CI_STRESS=[["1","😤","非常に高い"],["2","😟","やや高い"],["3","😐","ふつう"],["4","😊","低い"],["5","🌿","とても低い"]];
+let ciSel={cond:null,sleep:null,stress:null};
+
+function buildCIBtns(id,defs){
+  const el=document.getElementById(id);
+  if(!el)return;
+  el.innerHTML=defs.map(([v,e,l])=>`
+    <div onclick="selectCI('${id.replace("Btns","")}','${v}',this)" data-val="${v}"
+      style="flex:1;padding:10px 4px;border-radius:12px;border:2px solid #1a1a2e;cursor:pointer;text-align:center;transition:all 0.2s;">
+      <div style="font-size:22px;">${e}</div>
+      <div style="font-size:9px;color:#888;margin-top:3px;">${l}</div>
+    </div>`).join("");
+}
+
+function openCheckin(){
+  ciSel={cond:null,sleep:null,stress:null};
+  document.getElementById("checkinModal").style.display="block";
+  document.body.style.overflow="hidden";
+  buildCIBtns("condBtns",  CI_COND);
+  buildCIBtns("sleepBtns", CI_SLEEP);
+  buildCIBtns("stressBtns",CI_STRESS);
+}
+
+function closeCheckin(){
+  document.getElementById("checkinModal").style.display="none";
+  document.body.style.overflow="";
+}
+
+function selectCI(key,val,el){
+  ciSel[key]=val;
+  const map={cond:"condBtns",sleep:"sleepBtns",stress:"stressBtns"};
+  const colors={cond:"#4dffb4",sleep:"#78ffd6",stress:"#ff88aa"};
+  document.getElementById(map[key]).querySelectorAll("div[data-val]").forEach(d=>{
+    const on=d.dataset.val===val;
+    d.style.border=`2px solid ${on?colors[key]:"#1a1a2e"}`;
+    d.style.background=on?colors[key]+"22":"transparent";
+  });
+}
+
+function saveCheckin(){
+  if(!ciSel.cond||!ciSel.sleep||!ciSel.stress){
+    alert("3つすべて選んでください");return;
+  }
+  const now=new Date();
+  const record={
+    ts:now.toISOString(),
+    dateStr:`${now.getMonth()+1}/${now.getDate()} ${now.getHours()}:${String(now.getMinutes()).padStart(2,"0")}`,
+    cond:parseInt(ciSel.cond),
+    sleep:parseInt(ciSel.sleep),
+    stress:parseInt(ciSel.stress)
+  };
+  const key="nagisa_checkin";
+  let logs=[];
+  try{logs=JSON.parse(localStorage.getItem(key)||"[]");}catch(e){}
+  logs.unshift(record);
+  if(logs.length>30)logs=logs.slice(0,30);
+  localStorage.setItem(key,JSON.stringify(logs));
+  closeCheckin();
+  renderCheckinHome();
+}
+
+function renderCheckinHome(){
+  const key="nagisa_checkin";
+  let logs=[];
+  try{logs=JSON.parse(localStorage.getItem(key)||"[]");}catch(e){}
+  const sumEl=document.getElementById("checkinSummary");
+  const histEl=document.getElementById("checkinHistory");
+  if(!sumEl)return;
+  if(logs.length===0){
+    sumEl.textContent="今日の記録がまだありません";
+    if(histEl)histEl.innerHTML="";
+    return;
+  }
+  const latest=logs[0];
+  const ce=CI_COND.find(x=>x[0]==latest.cond);
+  const se=CI_SLEEP.find(x=>x[0]==latest.sleep);
+  const st=CI_STRESS.find(x=>x[0]==latest.stress);
+  sumEl.innerHTML=`<span style="color:#aaa;font-size:11px;">最終記録：${latest.dateStr}</span><br>
+    体調 ${ce?ce[1]:""}${latest.cond} &nbsp;&nbsp; 睡眠 ${se?se[1]:""}${latest.sleep} &nbsp;&nbsp; ストレス ${st?st[1]:""}${latest.stress}`;
+  if(histEl&&logs.length>0){
+    const bar=(v,color)=>`<div style="display:inline-block;width:${v*16}px;height:5px;border-radius:3px;background:${color};vertical-align:middle;"></div>`;
+    histEl.innerHTML=`<div style="font-size:12px;color:#666;margin-bottom:8px;margin-top:4px;">📊 最近の記録</div>`+
+    logs.slice(0,5).map(r=>{
+      const c=CI_COND.find(x=>x[0]==r.cond);
+      const s=CI_SLEEP.find(x=>x[0]==r.sleep);
+      const t=CI_STRESS.find(x=>x[0]==r.stress);
+      return `<div style="padding:10px 14px;border-radius:12px;background:#0a0a15;border:1px solid #1a1a2e;margin-bottom:6px;">
+        <div style="font-size:10px;color:#555;margin-bottom:6px;">${r.dateStr}</div>
+        <div style="display:flex;flex-direction:column;gap:5px;">
+          <div style="display:flex;align-items:center;gap:8px;font-size:11px;"><span style="color:#4dffb4;width:44px;">体調</span>${bar(r.cond,"#4dffb4")}<span style="color:#aaa;margin-left:4px;">${c?c[1]:""}${r.cond}</span></div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:11px;"><span style="color:#78ffd6;width:44px;">睡眠</span>${bar(r.sleep,"#78ffd6")}<span style="color:#aaa;margin-left:4px;">${s?s[1]:""}${r.sleep}</span></div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:11px;"><span style="color:#ff88aa;width:44px;">ストレス</span>${bar(r.stress,"#ff88aa")}<span style="color:#aaa;margin-left:4px;">${t?t[1]:""}${r.stress}</span></div>
+        </div>
+      </div>`;
+    }).join("");
+  }
+}
+
 // 初期化
 initMeditation();
 initSymptom();
+renderCheckinHome();
 </script>
